@@ -1,16 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import socketIOClient from 'socket.io-client';
-// import http from 'http';
 import './app.css'
 
 // const socket = io.connect('http://loacalhost:4242')
 const ENDPOINT = 'http://localhost:4242';
-// const socket;
+let socket;
 
 export default function app() {
 
   useEffect(() => {
-    const socket = socketIOClient(ENDPOINT);
+    socket = socketIOClient(ENDPOINT);
     socket.emit('click', 'red');
   }, [])
 
