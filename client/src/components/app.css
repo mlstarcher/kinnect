@@ -68,7 +68,9 @@ h1 {
 
 .main-content-container {
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
 }
 .button-container {
   display: flex;

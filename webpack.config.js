@@ -1,7 +1,9 @@
 const path = require('path')
 
+const entry = path.join(__dirname, 'client', 'src');
+
 module.exports = {
-  entry: path.join(__dirname, 'client', 'src'),
+  entry: entry,
   output: {
     filename: 'main.js',
     path: path.resolve(__dirname, 'client', 'dist'),
