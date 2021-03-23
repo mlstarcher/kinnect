@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import socketIOClient from 'socket.io-client';
-import Tone from 'tone';
+import { Transport, } from 'tone';
 import './app.css';
 
 // const socket = io.connect('http://loacalhost:4242')
@@ -13,7 +13,7 @@ export default function app() {
     socket = socketIOClient(ENDPOINT);
     socket.emit('click', 'red');
 
-    if (Tone.context.state !== 'running') Tone.context.resume();
+    // if (Tone.context.state !== 'running') Tone.context.resume();
   }, [])
 
   const redButtonClick = (e) => {
@@ -36,8 +36,8 @@ export default function app() {
         notes = ['G5', 'E4', 'C3'];
   let index = 0;
   
-  Tone.Transport.scheduleRepeat(repeat, '8n');
-  Tone.Transport.start();
+  Transport.scheduleRepeat(repeat, '8n');
+  Transport.start();
   
   function repeat(time) {
     let step = index % 8;
