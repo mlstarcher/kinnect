@@ -1,20 +1,25 @@
 import React, { useState, useEffect, useRef } from 'react';
 import socketIOClient from 'socket.io-client';
 import * as Tone from 'tone';
-// import { Transport, Sequence, Synth } from 'tone';
+
 import './app.css';
+import Step from './step';
 
 const ENDPOINT = 'http://localhost:4242';
 let socket;
 
 const GenerateGrid = (steps) => {
+  
   const grid = [];
   for (let i = 0; i < steps; i++) {
-    let column = [
-      { pin: 4, isActive: false }
-    ];
-    grid.push(column);
+    let currentStep = {
+      pin: 4,
+      isActive: false,
+      stepNumber: i
+    }
+    grid.push(currentStep);
   }
+  console.log('GenerateGrid Ran', grid)
   return grid;
 }
 
@@ -26,7 +31,7 @@ export default function app() {
 
   useEffect(() => {
     socket = socketIOClient(ENDPOINT);
-    socket.emit('click', 'red');
+    // socket.emit('click', 'red');
   }, [])
 
   const redButtonClick = (e) => {
@@ -42,6 +47,7 @@ export default function app() {
 
   const startTransport = (e) => {
     e.preventDefault()
+    console.log(grid);
     Tone.start()
     Tone.Transport.start()
     seq.start(0)
@@ -57,13 +63,26 @@ export default function app() {
   const seq = new Tone.Sequence((time, note) => {
     if (note.isActive) {
       pinFour()
-      console.log('on')
-
+      console.log(note.isActive)
     } else {
-      console.log('off')
+      console.log(note.isActive)
     }
-    // subdivisions are given as subarrays
-  }, grid);
+  }, grid, "8n");
+
+  const handleStepClick = (clickedStep) => {
+    // e.preventDefault()
+    console.log(clickedStep.stepNumber)
+    let updatedGrid = grid.map(step => {
+      let stepCopy = step;
+
+      if (clickedStep.stepNumber === step.stepNumber) {
+        stepCopy.isActive = !step.isActive
+      }
+      return stepCopy;
+    })
+    setGrid(updatedGrid)
+    console.log(updatedGrid)
+  }
 
   return (
     <>
@@ -71,21 +90,16 @@ export default function app() {
         <h1>Welcome to Kinnect!</h1>
       </span>
       <div className="main-content-container">
+        <div className="step-container">
+          {grid.map((currentStep, index) => {
+            return <Step handleStepClick={handleStepClick} currentStep={currentStep} key={index}/>
+          })}
+        </div> 
         <div className="button-container">
           {/* <button id="red-button" className="red" onClick={redButtonClick}>Red</button> */}
-          <button id="red-button" className="red" onClick={stopTransport}>Stop</button>
           <button id="green-button" className="green" onClick={startTransport}>Start</button>
-        </div>
-        {/* <div>
-          <input type="checkbox" />
-          <input type="checkbox" />
-          <input type="checkbox" />
-          <input type="checkbox" />
-          <input type="checkbox" />
-          <input type="checkbox" />
-          <input type="checkbox" />
-          <input type="checkbox" />
-        </div>         */}
+          <button id="red-button" className="red" onClick={stopTransport}>Stop</button>
+        </div >       
       </div>
     </>
   )
