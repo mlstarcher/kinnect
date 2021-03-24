@@ -33,16 +33,10 @@ export default function app() {
     socket = socketIOClient(ENDPOINT);
     // socket.emit('click', 'red');
   }, [])
-
-  const redButtonClick = (e) => {
-      e.preventDefault()
-      socket.emit('click', 'red')
-      console.log('red')
-    }
   
   const pinFour = () => {
     socket.emit('click', 'red')
-    console.log('pin4 triggered')
+    // console.log('pin4 triggered')
   }
 
   const startTransport = (e) => {
@@ -63,15 +57,15 @@ export default function app() {
   const seq = new Tone.Sequence((time, note) => {
     if (note.isActive) {
       pinFour()
-      console.log(note.isActive)
+      // console.log(note.isActive)
     } else {
-      console.log(note.isActive)
+      // console.log(note.isActive)
     }
   }, grid, "8n");
 
   const handleStepClick = (clickedStep) => {
     // e.preventDefault()
-    console.log(clickedStep.stepNumber)
+    // console.log(clickedStep.stepNumber)
     let updatedGrid = grid.map(step => {
       let stepCopy = step;
 

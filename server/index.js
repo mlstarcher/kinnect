@@ -32,7 +32,7 @@ io.on('connection', socket => {
         console.log(input)
         if (redLED.readSync() === 0) { //check the pin state, if the state is 0 (or off)
             redLED.writeSync(1); //set pin state to 1 (turn redLED on)
-            setTimeout(switchOff, 150)
+            setTimeout(switchOff, 50)
           } else {
             redLED.writeSync(0); //set pin state to 0 (turn redLED off)
           }
