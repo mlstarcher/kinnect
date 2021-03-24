@@ -44,8 +44,13 @@ export default function app() {
     console.log(grid);
     Tone.start()
     Tone.Transport.start()
+    Tone.Transport.bpm.value = bpm;
     seq.start(0)
     console.log('Transport Started')
+  }
+
+  const updateBpm = (newBpm) => {
+    setBpm(newBpm)
   }
 
   const stopTransport = (e) => {

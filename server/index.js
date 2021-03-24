@@ -1,6 +1,7 @@
 const express = require('express')
 const morgan = require('morgan')
 const path = require('path')
+const cors = require('cors')
 const http = require('http')
 const socketio = require('socket.io')
 const Gpio = require('onoff').Gpio
@@ -11,10 +12,23 @@ const blueLED = new Gpio(6, 'out')
 const app = express()
 const server = http.createServer(app);
 const io = socketio(server);
+
+// const sio = require("socket.io")(server, {
+//   handlePreflightRequest: (req, res) => {
+//       const headers = {
+//           "Access-Control-Allow-Headers": "Content-Type, Authorization",
+//           "Access-Control-Allow-Origin": req.headers.origin, //or the specific origin you want to give access to,
+//           "Access-Control-Allow-Credentials": true
+//       };
+//       res.writeHead(200, headers);
+//       res.end();
+//   }
+// });
 const port = 4242;
 
 app.use(express.json())
 app.use(morgan('dev'))
+app.use(cors())
 
 app.use(express.static(path.join(__dirname, '..', 'client', 'dist')))
 
@@ -27,12 +41,11 @@ io.on('connection', socket => {
     socket.emit('success', 'Welome to Kinnect, connection successful!')
 
     socket.on('click', input => {
-        // console.log('click received')
       if (input === 'red') {
-        console.log(input)
+        // console.log(input)
         if (redLED.readSync() === 0) { //check the pin state, if the state is 0 (or off)
             redLED.writeSync(1); //set pin state to 1 (turn redLED on)
-            setTimeout(switchOff, 50)
+            setTimeout(switchOff, 60)
           } else {
             redLED.writeSync(0); //set pin state to 0 (turn redLED off)
           }
