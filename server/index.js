@@ -10,25 +10,19 @@ const greenLED = new Gpio(5, 'out')
 const blueLED = new Gpio(6, 'out')
 
 const app = express()
-const server = http.createServer(app);
-const io = socketio(server);
-
-// const sio = require("socket.io")(server, {
-//   handlePreflightRequest: (req, res) => {
-//       const headers = {
-//           "Access-Control-Allow-Headers": "Content-Type, Authorization",
-//           "Access-Control-Allow-Origin": req.headers.origin, //or the specific origin you want to give access to,
-//           "Access-Control-Allow-Credentials": true
-//       };
-//       res.writeHead(200, headers);
-//       res.end();
-//   }
-// });
-const port = 4242;
-
 app.use(express.json())
 app.use(morgan('dev'))
-app.use(cors())
+// app.use(cors())
+
+const server = http.createServer(app);
+const io = socketio(server, {
+  cors: {
+    origin: "*",
+    methods: "GET,PUT,POST"
+  }
+});
+
+const port = 4242;
 
 app.use(express.static(path.join(__dirname, '..', 'client', 'dist')))
 
