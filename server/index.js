@@ -4,10 +4,13 @@ const path = require('path')
 const cors = require('cors')
 const http = require('http')
 const socketio = require('socket.io')
+
+// const controllers = require('./controllers.js');
+
 const Gpio = require('onoff').Gpio
-const redLED = new Gpio(4, 'out')
-const greenLED = new Gpio(5, 'out')
-const blueLED = new Gpio(6, 'out')
+const pinFour = new Gpio(4, 'out')
+// const greenLED = new Gpio(5, 'out')
+// const blueLED = new Gpio(6, 'out')
 
 const app = express()
 app.use(express.json())
@@ -37,11 +40,11 @@ io.on('connection', socket => {
     socket.on('click', input => {
       if (input === 'red') {
         // console.log(input)
-        if (redLED.readSync() === 0) { //check the pin state, if the state is 0 (or off)
-            redLED.writeSync(1); //set pin state to 1 (turn redLED on)
+        if (pinFour.readSync() === 0) { //check the pin state, if the state is 0 (or off)
+            pinFour.writeSync(1); //set pin state to 1 (turn pinFour on)
             setTimeout(switchOff, 60)
           } else {
-            redLED.writeSync(0); //set pin state to 0 (turn redLED off)
+            pinFour.writeSync(0); //set pin state to 0 (turn pinFour off)
           }
         } else if (input === 'green') {
           if (greenLED.readSync() === 0) { //check the pin state, if the state is 0 (or off)
