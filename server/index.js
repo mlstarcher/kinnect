@@ -4,11 +4,10 @@ const path = require('path')
 const cors = require('cors')
 const http = require('http')
 const socketio = require('socket.io')
+const StepSequencer = require('step-sequencer')
 
-// const controllers = require('./controllers.js');
-
-const Gpio = require('onoff').Gpio
-const pinFour = new Gpio(4, 'out')
+// const Gpio = require('onoff').Gpio
+// const pinFour = new Gpio(4, 'out')
 // const greenLED = new Gpio(5, 'out')
 // const blueLED = new Gpio(6, 'out')
 
@@ -33,52 +32,95 @@ server.listen(port, () => {
     console.log(`Server is up and at em, listening on ${port}`)
 })
 
-io.on('connection', socket => {
-    console.log('new WS Connection')
-    socket.emit('success', 'Welome to Kinnect, connection successful!')
+// Instantiate a new StepSequencer object
+var tempo = 60;
+var division = 8;
+var sequence = [
+  {stepNumber: 0, isActive: false},
+  {stepNumber: 1, isActive: false},
+  {stepNumber: 2, isActive: false},
+  {stepNumber: 3, isActive: false},
+  {stepNumber: 4, isActive: false},
+  {stepNumber: 5, isActive: false},
+  {stepNumber: 6, isActive: false},
+  {stepNumber: 7, isActive: false},
+];
+var stepSequencer = new StepSequencer(tempo, division, sequence);
 
-    socket.on('click', input => {
-      if (input === 'red') {
-        // console.log(input)
-        if (pinFour.readSync() === 0) { //check the pin state, if the state is 0 (or off)
-            pinFour.writeSync(1); //set pin state to 1 (turn pinFour on)
-            setTimeout(switchOff, 60)
-          } else {
-            pinFour.writeSync(0); //set pin state to 0 (turn pinFour off)
-          }
-        } else if (input === 'green') {
-          if (greenLED.readSync() === 0) { //check the pin state, if the state is 0 (or off)
-            greenLED.writeSync(1); //set pin state to 1 (turn greenLED on)
-            setTimeout(switchOff, 150)
-          } else {
-            greenLED.writeSync(0); //set pin state to 0 (turn greenLED off)
-          }
-        } else if (input === 'blue') {
-          if (blueLED.readSync() === 0) { //check the pin state, if the state is 0 (or off)
-            blueLED.writeSync(1); //set pin state to 1 (turn blueLED on)
-            setTimeout(switchOff, 150)
-          } else {
-            blueLED.writeSync(0); //set pin state to 0 (turn blueLED off)
-          }
-        }
-    })
-})
-
-// var blinkInterval = setInterval(blinkredLED, 250); //run the blinkredLED function every 250ms
-
-// function blinkredLED() { //function to start blinking
-//   if (redLED.readSync() === 0) { //check the pin state, if the state is 0 (or off)
-//     redLED.writeSync(1); //set pin state to 1 (turn redLED on)
-//   } else {
-//     redLED.writeSync(0); //set pin state to 0 (turn redLED off)
-//   }
-// }
-
-function switchOff() { //function to stop blinking
-  redLED.writeSync(0); // Turn LED off
-  greenLED.writeSync(0);
-  blueLED.writeSync(0);
-//   LED.unexport(); // Unexport GPIO to free resources
+const initialize = () => {
+  sequence = [
+    {stepNumber: 0, isActive: false},
+    {stepNumber: 1, isActive: false},
+    {stepNumber: 2, isActive: false},
+    {stepNumber: 3, isActive: false},
+    {stepNumber: 4, isActive: false},
+    {stepNumber: 5, isActive: false},
+    {stepNumber: 6, isActive: false},
+    {stepNumber: 7, isActive: false},
+  ];
 }
 
-// setTimeout(endBlink, 5000); //stop blinking after 5 seconds
+initialize();
+
+// Begin playing the sequence
+stepSequencer.play();
+
+const activateStep = (selectedStepNumber) => {
+  console.log('selectedStepNumber is: ', selectedStepNumber)
+  let updatedGrid = sequence.map(currentStep => {
+    if (currentStep.stepNumber === selectedStepNumber) {
+      currentStep.isActive = !currentStep.isActive;
+    return currentStep;
+    } else {
+      return currentStep;
+    }
+  })
+  sequence = updatedGrid;
+  console.log(sequence);
+}
+
+io.on('connection', socket => {
+    console.log('New WS Connection Established')
+    socket.emit('success', 'Welome to Kinnect, connection successful!')
+    socket.emit('sequence', sequence)
+    socket.on('activateStep', stepNumber => {
+      activateStep(stepNumber)
+      socket.emit('sequence', sequence)
+    })
+
+
+    // The StepSequencer emits the number of
+    // the step when that step is to be played
+    stepSequencer.on('0', function (step) {
+        // console.log(step);
+        socket.emit('step', step)
+    })
+    .on('1', function (step) {
+        // console.log(step);
+        socket.emit('step', step)
+    })
+    .on('2', function (step) {
+        // console.log(step);
+        socket.emit('step', step)
+    })
+    .on('3', function (step) {
+        // console.log(step);
+        socket.emit('step', step)
+    })
+    .on('4', function (step) {
+      // console.log(step);
+      socket.emit('step', step)
+    })
+    .on('5', function (step) {
+        // console.log(step);
+        socket.emit('step', step)
+    })
+    .on('6', function (step) {
+        // console.log(step);
+        socket.emit('step', step)
+    })
+    .on('7', function (step) {
+      // console.log(step);
+      socket.emit('step', step)
+  });
+})
