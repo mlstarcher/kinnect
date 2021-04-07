@@ -1,4 +1,7 @@
-const sequence = [
+const stepSequencerMethods = {
+  division: 8,
+  bpm: 60,
+  sequence: [
     {stepNumber: 0, isActive: false},
     {stepNumber: 1, isActive: false},
     {stepNumber: 2, isActive: false},
@@ -7,6 +10,7 @@ const sequence = [
     {stepNumber: 5, isActive: false},
     {stepNumber: 6, isActive: false},
     {stepNumber: 7, isActive: false},
-  ];
+  ],
+}
 
-module.exports = sequence;
+module.exports = stepSequencerMethods;

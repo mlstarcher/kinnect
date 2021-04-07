@@ -65,20 +65,6 @@ initialize();
 // Begin playing the sequence
 stepSequencer.play();
 
-const activateStep = (selectedStepNumber) => {
-  console.log('selectedStepNumber is: ', selectedStepNumber)
-  let updatedGrid = sequence.map(currentStep => {
-    if (currentStep.stepNumber === selectedStepNumber) {
-      currentStep.isActive = !currentStep.isActive;
-    return currentStep;
-    } else {
-      return currentStep;
-    }
-  })
-  sequence = updatedGrid;
-  console.log(sequence);
-}
-
 io.on('connection', socket => {
     console.log('New WS Connection Established')
     socket.emit('success', 'Welome to Kinnect, connection successful!')

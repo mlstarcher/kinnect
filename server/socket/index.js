@@ -1,21 +1,12 @@
-const server = require('../index.js');
-// const http = require('http');
+const server = require('../index.js').server;
 const socketio = require('socket.io')
-const sequence = require('../sequencer/sequence.js')
 
-// const server = http.createServer(app);
 const io = socketio(server, {
   cors: {
     origin: "*",
     methods: "GET,PUT,POST"
   }
 });
-
-io.on('connection', socket => {
-  console.log('New WS Connection Established')
-  socket.emit('success', 'Welome to Kinnect, connection successful!')
-  socket.emit('sequence', sequence)
-})
 
 module.exports = io;
 
