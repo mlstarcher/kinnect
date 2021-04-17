@@ -10,6 +10,15 @@ io.on('connection', socket => {
   console.log('New WS Connection Established')
   socket.emit('success', 'Welome to Kinnect, connection successful!')
   socket.emit('sequence', stepSequencerSettings.sequence)
+
+  //Receive step selection, emit updated sequence
+  socket.on('activateStep', stepDetails => {
+    stepSequencerSettings.handleStepClick(stepDetails)
+    console.log(stepSequencerSettings.sequence)
+    socket.emit('sequence', stepSequencerSettings.sequence)
+  })
+
+  //Sequencer
   stepSequencer.on('0', function (step) {
     // console.log(step);
     socket.emit('step', 0)

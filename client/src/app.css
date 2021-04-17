@@ -147,7 +147,16 @@ h1 {
   justify-content: center;
   margin: 2% 0%;
 }
-
+.background-color {
+  background-color: rgb(165, 126, 42);
+  /* background-image: linear-gradient(20deg, rgb(179, 64, 64), rgb(104, 104, 255), rgb(179, 64, 131)); */
+  background-image: linear-gradient(
+    20deg,
+    rgb(167, 46, 46),
+    rgb(216, 150, 51),
+    rgb(192, 96, 96)
+  );
+}
 .main-content-container {
   display: flex;
   flex-direction: column;
@@ -175,48 +184,14 @@ h1 {
   border: 3px double black;
   box-shadow: 3px 3px 0px 0px rgb(86, 86, 88);
 }
-.active-step {
-  background: rgb(201, 82, 82);
-  height: 75px;
-  width: 75px;
-  margin: 10px 10px 10px 0px;
-  /* border-radius: 100%; */
-  border: 3px double black;
-  /* box-shadow: 5px 5px 0px 0px rgb(86, 86, 88); */
-  /* transform: translate(3px, 3px); */
-}
-.currently-on {
-  /* background-color: rgb(185, 129, 107); */
-  /* background-color: inherit; */
-  height: 70px;
-  width: 75px;
-  margin: 10px 10px 10px 0px;
-  border-radius: 100%;
-  border: 3px double black;
-  /* box-shadow: 5px 5px 0px 0px rgb(86, 86, 88); */
+.light-up-step {
+  box-shadow: 5px 5px 0px 0px rgb(86, 86, 88);
   transform: translate(3px, 10px);
 }
-.background-color {
-  background-color: rgb(165, 126, 42);
-  /* background-image: linear-gradient(20deg, rgb(179, 64, 64), rgb(104, 104, 255), rgb(179, 64, 131)); */
-  background-image: linear-gradient(
-    20deg,
-    rgb(167, 46, 46),
-    rgb(216, 150, 51),
-    rgb(192, 96, 96)
-  );
+.active-step {
+  background: rgb(211, 113, 113);
 }
-.red {
-  background: rgb(201, 82, 82);
-}
-.green {
-  background: rgb(122, 177, 100);
-}
-.blue {
-  background: rgb(96, 158, 194);
-}
-
-button {
+/* button {
   font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
   border-radius: 100%;
   font-weight: 700;
@@ -225,7 +200,7 @@ button {
   width: 100px;
   border: 5px double black;
   box-shadow: 5px 5px 0px 0px rgb(63, 65, 70);
-}
+} */
 button:active {
   /* background-color: rgb(241, 234, 134); */
   box-shadow: 0px 0px;

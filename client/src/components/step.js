@@ -1,27 +1,20 @@
 import React, { useState } from 'react'
 
-export default function sessionStep({ lightUp }) {
-  // let currentStep = step;
-  // const [isActive, setIsActive] = useState(false)
+export default function sessionStep({ lightUp, handleStepClick, currentStepValue, currentStepNumber, currentRowNumber }) {
+
+  let stepNumber = currentStepNumber;
+  let rowNumber = currentRowNumber;
+
   let style = 'step';
   if (lightUp) {
-    style = 'currently-on';
+    style += ' light-up-step';
+  }
+  if (currentStepValue === 1) {
+    style += ' active-step';
   }
 
-  // if (currentStep.stepNumber === step.stepNumber) {
-  //   classes = 'current-step'
-  // } else {
-  //   classes = 'step';
-  // }
-  // if (step.isActive) {
-  //   isActive = ' active-step'
-  // } else {
-  //   isActive = ''
-  // }
-
-  // onClick={() => handleStepClick(myNumber)}
   return (
-    <div className={style} >
-    </div>
+    <button className={style} onClick={() => handleStepClick(stepNumber, rowNumber)}>
+    </button>
   )
 }

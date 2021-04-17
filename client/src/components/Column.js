@@ -2,16 +2,22 @@ import React from 'react'
 
 import Step from './Step'
 
-export default function Column({ currentColumnValues, activeColumnNumber, currentColumnNumber }) {
-  // console.log('currentColumnValues is: ', currentColumnValues)
+export default function Column({ currentColumnValues, currentStepNumber, currentColumnNumber, handleStepClick }) {
   let lightUp = false;
   return (
     <div className="column-containter">
         {currentColumnValues.map((currentStepValue, index) => {
-          if (currentColumnNumber === activeColumnNumber) {
+          if (currentColumnNumber === currentStepNumber) {
             lightUp = true;
           }
-          return <Step key={index} lightUp={lightUp}/>
+          return <Step
+          currentStepValue={currentStepValue}
+          currentStepNumber={currentColumnNumber}
+          currentRowNumber={index}
+          key={index}
+          lightUp={lightUp}
+          handleStepClick={handleStepClick}
+          />
         })}
       </div>
   )

@@ -8,7 +8,7 @@ let socket;
 
 export default function session() {
   const [sequence, setSequence] = useState([])
-  const [activeColumnNumber, setActiveColumnNumber] = useState(0)
+  const [currentStepNumber, setcurrentStepNumber] = useState(0)
 
   useEffect(() => {
     socket = socketIOClient(ENDPOINT);
@@ -20,17 +20,25 @@ export default function session() {
       setSequence(sequence)
     })
     socket.on('step', step => {
-      setActiveColumnNumber(step);
+      setcurrentStepNumber(step);
     })
   }, [])
 
-  const handleStepClick = (stepNumber) => {
-    console.log(stepNumber);
-    socket.emit('activateStep', stepNumber)
-    socket.on('sequence', sequence => {
-      console.log(sequence)
-      setSequence(sequence)
-    })
+const handleStepClick = (stepNumber, rowNumber) => {
+    console.log('I got clicked');
+    console.log('currentStepNumber :', stepNumber, 'currentRowNumber ;', rowNumber)
+
+    let selectedStepDetails = {
+      stepNumber: stepNumber,
+      rowNumber: rowNumber
+    }
+
+    socket.emit('activateStep', selectedStepDetails)
+
+    // socket.on('sequence', sequence => {
+    //   console.log(sequence)
+    //   setSequence(sequence)
+    // }
   }
 
   return (
@@ -43,8 +51,9 @@ export default function session() {
         // console.log('suppy', currentColumnValues)
         return <Column
         currentColumnValues={currentColumnValues}
-        activeColumnNumber={activeColumnNumber}
+        currentStepNumber={currentStepNumber}
         currentColumnNumber={index}
+        handleStepClick={handleStepClick}
         key={index}/>
       })}
       </div>
