@@ -40,10 +40,29 @@ const sequence = [
   },
 ];
 
+const sequence2 = [
+  [0, 0, 0, 0],
+  [0, 0, 0, 0],
+  [0, 0, 0, 0],
+  [0, 0, 0, 0],
+  [0, 0, 0, 0],
+  [0, 0, 0, 0],
+  [0, 0, 0, 0],
+  [0, 0, 0, 0],
+  [0, 0, 0, 0],
+  [0, 0, 0, 0],
+  [0, 0, 0, 0],
+  [0, 0, 0, 0],
+  [0, 0, 0, 0],
+  [0, 0, 0, 0],
+  [0, 0, 0, 0],
+  [0, 0, 0, 0],
+]
+
 const stepSequencerMethods = {
   division: 8,
   bpm: 60,
-  sequence: sequence,
+  sequence: sequence2,
 }
 
 var tempo = 60;

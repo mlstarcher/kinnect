@@ -8,7 +8,7 @@ let socket;
 
 export default function session() {
   const [sequence, setSequence] = useState([])
-  const [currentStep, setCurrentStep] = useState([0, 0, 0, 0])
+  const [activeColumnNumber, setActiveColumnNumber] = useState(0)
 
   useEffect(() => {
     socket = socketIOClient(ENDPOINT);
@@ -20,18 +20,9 @@ export default function session() {
       setSequence(sequence)
     })
     socket.on('step', step => {
-      // console.log(step);
-      setCurrentStep(step);
+      setActiveColumnNumber(step);
     })
   }, [])
-
-  // const startTransport = (e) => {
-  //   e.preventDefault();
-  //   socket.on('step', step => {
-  //     // console.log(step);
-  //     setCurrentStep(step);
-  //   })
-  // }
 
   const handleStepClick = (stepNumber) => {
     console.log(stepNumber);
@@ -48,8 +39,13 @@ export default function session() {
         <h1>Welcome to Kinnect!</h1>
       </span>
       <div className="sequencer-container">
-      {sequence.map((currentColumn, index) => {
-        return <Column currentColumn={currentColumn} key={index}/>
+      {sequence.map((currentColumnValues, index) => {
+        // console.log('suppy', currentColumnValues)
+        return <Column
+        currentColumnValues={currentColumnValues}
+        activeColumnNumber={activeColumnNumber}
+        currentColumnNumber={index}
+        key={index}/>
       })}
       </div>
     </>

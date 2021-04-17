@@ -1,14 +1,12 @@
 import React, { useState } from 'react'
 
-export default function sessionStep({ currentColumn, row }) {
-  let currentRow = row;
+export default function sessionStep({ lightUp }) {
+  // let currentStep = step;
   // const [isActive, setIsActive] = useState(false)
-
-
-  // const myNumber = step.stepNumber;
-  // console.log('step.stepNumber is ', myNumber)
-  // let classes = '';
-  // let isActive = '';
+  let style = 'step';
+  if (lightUp) {
+    style = 'currently-on';
+  }
 
   // if (currentStep.stepNumber === step.stepNumber) {
   //   classes = 'current-step'
@@ -23,9 +21,7 @@ export default function sessionStep({ currentColumn, row }) {
 
   // onClick={() => handleStepClick(myNumber)}
   return (
-    <div className="step" >
-      <p>Col: {currentColumn}</p>
-      <p>Row: {currentRow}</p>
+    <div className={style} >
     </div>
   )
 }
