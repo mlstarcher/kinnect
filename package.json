@@ -5,8 +5,10 @@
   "main": "index.js",
   "scripts": {
     "start": "nodemon ./server",
-    "build": "webpack -w",
-    "test": "test"
+    "build": "webpack",
+    "test": "test",
+    "format": "prettier \"src/**/*.{js,html}\"",
+    "lint": "eslint \"src/**/*.{js,jsx}\" --quiet"
   },
   "repository": {
     "type": "git",
@@ -45,5 +47,14 @@
     "tone": "^14.7.77",
     "webpack": "^5.27.1",
     "webpack-cli": "^4.5.0"
+  },
+  "devDependencies": {
+    "babel-eslint": "^10.1.0",
+    "eslint": "^7.23.0",
+    "eslint-config-prettier": "^8.1.0",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-jsx-a11y": "^6.4.1",
+    "eslint-plugin-react": "^7.23.1",
+    "prettier": "^2.2.1"
   }
 }

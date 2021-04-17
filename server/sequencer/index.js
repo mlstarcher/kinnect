@@ -1,19 +1,49 @@
 const StepSequencer = require('step-sequencer');
 // const stepSequencerMethods = require('./stepSequencerMethods');
 
+const sequence = [
+  {
+    step: 0,
+    rows: [0, 0, 0, 0]
+  },
+  {
+    step: 1,
+    rows: [0, 0, 0, 0]
+  },
+  {
+    step: 2,
+    rows: [0, 0, 0, 0]
+  },
+  {
+    step: 3,
+    rows: [0, 0, 0, 0]
+  },
+  {
+    step: 4,
+    rows: [0, 0, 0, 0]
+  },
+  {
+    step: 5,
+    rows: [0, 0, 0, 0]
+  },
+  {
+    step: 6,
+    rows: [0, 0, 0, 0]
+  },
+  {
+    step: 7,
+    rows: [0, 0, 0, 0]
+  },
+  {
+    step: 8,
+    rows: [0, 0, 0, 0]
+  },
+];
+
 const stepSequencerMethods = {
   division: 8,
   bpm: 60,
-  sequence: [
-    {stepNumber: 0, isActive: false},
-    {stepNumber: 1, isActive: false},
-    {stepNumber: 2, isActive: false},
-    {stepNumber: 3, isActive: false},
-    {stepNumber: 4, isActive: false},
-    {stepNumber: 5, isActive: false},
-    {stepNumber: 6, isActive: false},
-    {stepNumber: 7, isActive: false},
-  ],
+  sequence: sequence,
 }
 
 var tempo = 60;
@@ -56,63 +86,3 @@ module.exports.stepSequencerMethods = stepSequencerMethods;
 //   sequence = updatedGrid;
 //   console.log(sequence);
 // }
-
-
-sequence: [
-  {
-    stepNumber: 0,
-    rowOneIsActive: false,
-    rowTwoIsActive: false,
-    rowThreeIsActive: false,
-    rowFourIsActive: false,
-  },
-  {
-    stepNumber: 1,
-    rowOneIsActive: false,
-    rowTwoIsActive: false,
-    rowThreeIsActive: false,
-    rowFourIsActive: false,
-  },
-  {
-    stepNumber: 2,
-    rowOneIsActive: false,
-    rowTwoIsActive: false,
-    rowThreeIsActive: false,
-    rowFourIsActive: false,
-  },
-  {
-    stepNumber: 3,
-    rowOneIsActive: false,
-    rowTwoIsActive: false,
-    rowThreeIsActive: false,
-    rowFourIsActive: false,
-  },
-  {
-    stepNumber: 4,
-    rowOneIsActive: false,
-    rowTwoIsActive: false,
-    rowThreeIsActive: false,
-    rowFourIsActive: false,
-  },
-  {
-    stepNumber: 5,
-    rowOneIsActive: false,
-    rowTwoIsActive: false,
-    rowThreeIsActive: false,
-    rowFourIsActive: false,
-  },
-  {
-    stepNumber: 6,
-    rowOneIsActive: false,
-    rowTwoIsActive: false,
-    rowThreeIsActive: false,
-    rowFourIsActive: false,
-  },
-  {
-    stepNumber: 7,
-    rowOneIsActive: false,
-    rowTwoIsActive: false,
-    rowThreeIsActive: false,
-    rowFourIsActive: false,
-  },
-],
