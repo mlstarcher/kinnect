@@ -1,77 +1,10 @@
 const StepSequencer = require('step-sequencer');
-// const stepSequencerMethods = require('./stepSequencerMethods');
+const stepSequencerSettings = require('./stepSequencerSettings');
 
-const sequence = [
-  {
-    step: 0,
-    rows: [0, 0, 0, 0]
-  },
-  {
-    step: 1,
-    rows: [0, 0, 0, 0]
-  },
-  {
-    step: 2,
-    rows: [0, 0, 0, 0]
-  },
-  {
-    step: 3,
-    rows: [0, 0, 0, 0]
-  },
-  {
-    step: 4,
-    rows: [0, 0, 0, 0]
-  },
-  {
-    step: 5,
-    rows: [0, 0, 0, 0]
-  },
-  {
-    step: 6,
-    rows: [0, 0, 0, 0]
-  },
-  {
-    step: 7,
-    rows: [0, 0, 0, 0]
-  },
-  {
-    step: 8,
-    rows: [0, 0, 0, 0]
-  },
-];
-
-const sequence2 = [
-  [0, 0, 0, 0],
-  [0, 0, 0, 0],
-  [0, 0, 0, 0],
-  [0, 0, 0, 0],
-  [0, 0, 0, 0],
-  [0, 0, 0, 0],
-  [0, 0, 0, 0],
-  [0, 0, 0, 0],
-  [0, 0, 0, 0],
-  [0, 0, 0, 0],
-  [0, 0, 0, 0],
-  [0, 0, 0, 0],
-  [0, 0, 0, 0],
-  [0, 0, 0, 0],
-  [0, 0, 0, 0],
-  [0, 0, 0, 0],
-]
-
-const stepSequencerMethods = {
-  division: 8,
-  bpm: 60,
-  sequence: sequence2,
-}
-
-var tempo = 60;
-var division = 8;
-
-var stepSequencer = new StepSequencer(tempo, division, stepSequencerMethods.sequence);
+var stepSequencer = new StepSequencer(stepSequencerSettings.tempo, stepSequencerSettings.division, stepSequencerSettings.sequence);
 
 module.exports.stepSequencer = stepSequencer;
-module.exports.stepSequencerMethods = stepSequencerMethods;
+module.exports.stepSequencerSettings = stepSequencerSettings;
 
 //STEP SEQUENCER
 // Instantiate a new StepSequencer object

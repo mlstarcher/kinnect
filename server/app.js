@@ -1,17 +1,15 @@
-const StepSequencer = require('step-sequencer');
-const stepSequencerMethods = require('./sequencer').stepSequencerMethods;
+const stepSequencer = require('./sequencer').stepSequencer;
+const stepSequencerSettings = require('./sequencer').stepSequencerSettings;
 //Start websocket
 const io = require('./socket');
+
 //Start sequencer
-
-let stepSequencer = new StepSequencer(stepSequencerMethods.tempo, stepSequencerMethods.division, stepSequencerMethods.sequence);
-
 stepSequencer.play()
 
 io.on('connection', socket => {
   console.log('New WS Connection Established')
   socket.emit('success', 'Welome to Kinnect, connection successful!')
-  socket.emit('sequence', stepSequencerMethods.sequence)
+  socket.emit('sequence', stepSequencerSettings.sequence)
   stepSequencer.on('0', function (step) {
     // console.log(step);
     socket.emit('step', 0)
@@ -52,7 +50,7 @@ io.on('connection', socket => {
     // console.log(step);
     socket.emit('step', 9)
   })
-  stepSequencer.on('1', function (step) {
+  stepSequencer.on('10', function (step) {
     // console.log(step);
     socket.emit('step', 10)
   })
