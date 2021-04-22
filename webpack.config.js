@@ -1,11 +1,15 @@
 const path = require('path')
 
-const entry = path.join(__dirname, 'client', 'src');
+// path.join(__dirname, 'client', 'src', 'pages', 'App.js')
+// path.join(__dirname, 'client', 'src', 'pages', 'Admin.js')
 
 module.exports = {
-  entry: entry,
+  entry: {
+    app: './client/src/pages/App.js',
+    admin: './client/src/pages/Admin.js',
+  },
   output: {
-    filename: 'main.js',
+    filename: '[name].bundle.js',
     path: path.resolve(__dirname, 'client', 'dist'),
   },
   module: {

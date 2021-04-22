@@ -177,8 +177,8 @@ h1 {
 }
 .step {
   background-color: rgb(121, 175, 177);
-  height: 75px;
-  width: 75px;
+  height: 5em;
+  width: 5em;
   margin: 10px 10px 10px 0px;
   border-radius: 100%;
   border: 3px double black;
