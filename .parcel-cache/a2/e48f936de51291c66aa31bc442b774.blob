@@ -1,0 +1,74 @@
+"use strict";
+var helpers = require("../../../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
+var prevRefreshReg = window.$RefreshReg$;
+var prevRefreshSig = window.$RefreshSig$;
+helpers.prelude(module);
+try {
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+  exports["default"] = CreateSequenceForm;
+  var _react = _interopRequireDefault(require("react"));
+  var _jsxRuntime = require("react/jsx-runtime");
+  function _interopRequireDefault(obj) {
+    return obj && obj.__esModule ? obj : {
+      "default": obj
+    };
+  }
+  function CreateSequenceForm() {
+    var constructSequenceArray = function constructSequenceArray() {
+      var sequenceArray = [];
+      for (var i = 0; i < numberOfRows; i++) {
+        var row = [];
+        for (var j = 0; j < numberOfSteps; j++) {
+          row.push(j);
+        }
+        sequenceArray.push(row);
+      }
+      setNewSequence(sequenceArray);
+    };
+    return (
+      /*#__PURE__*/(0, _jsxRuntime.jsxs)("form", {
+        children: [/*#__PURE__*/(0, _jsxRuntime.jsx)("input", {
+          type: "text",
+          placeholder: ("Tempo: ").concat(tempo, " bpm"),
+          name: "tempo",
+          onChange: function onChange(e) {
+            return setTempo(e.target.value);
+          }
+        }), /*#__PURE__*/(0, _jsxRuntime.jsx)("br", {}), /*#__PURE__*/(0, _jsxRuntime.jsx)("input", {
+          type: "text",
+          placeholder: ("Division ").concat(division),
+          name: "division",
+          onChange: function onChange(e) {
+            return setDivision(e.target.value);
+          }
+        }), /*#__PURE__*/(0, _jsxRuntime.jsx)("br", {}), /*#__PURE__*/(0, _jsxRuntime.jsx)("input", {
+          type: "text",
+          placeholder: "Number of rows",
+          name: "sequence",
+          onChange: function onChange(e) {
+            return setNumberOfRows(e.target.value);
+          }
+        }), /*#__PURE__*/(0, _jsxRuntime.jsx)("br", {}), /*#__PURE__*/(0, _jsxRuntime.jsx)("input", {
+          type: "text",
+          placeholder: "Number of steps",
+          name: "sequence",
+          onChange: function onChange(e) {
+            return setNumberOfSteps(e.target.value);
+          }
+        }), /*#__PURE__*/(0, _jsxRuntime.jsx)("br", {}), /*#__PURE__*/(0, _jsxRuntime.jsx)("button", {
+          onClick: buildSequenceClickHandler,
+          children: "Build Sequencer"
+        })]
+      })
+    );
+  }
+  _c = CreateSequenceForm;
+  var _c;
+  $RefreshReg$(_c, "CreateSequenceForm");
+  helpers.postlude(module);
+} finally {
+  window.$RefreshReg$ = prevRefreshReg;
+  window.$RefreshSig$ = prevRefreshSig;
+}

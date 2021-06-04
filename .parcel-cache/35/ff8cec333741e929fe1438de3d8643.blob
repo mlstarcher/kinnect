@@ -10,9 +10,10 @@
   <!-- <link rel="stylesheet" href="./style.css"> -->
 </head>
 <body style="text-align: center;
-background-color: rgb(92, 135, 163);
+background-color: rgb(56, 135, 189);
+
 ">
   <div id="app">Loading...</div>
-  <script src="../src/index.js"></script>
+  <script src="/index.HASH_REF_b133115d520c389ba39d231ff6243fc2.js"></script>
 </body>
 </html>

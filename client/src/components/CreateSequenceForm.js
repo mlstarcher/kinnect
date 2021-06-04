@@ -1,6 +1,19 @@
 import React from 'react'
 
 export default function CreateSequenceForm() {
+
+  const constructSequenceArray = () => {
+    let sequenceArray = [];
+    for (let i = 0; i < numberOfRows; i++) {
+      let row = [];
+      for (let j = 0; j < numberOfSteps; j++) {
+        row.push(j);
+      }
+      sequenceArray.push(row);
+    }
+    setNewSequence(sequenceArray)
+  }
+
   return (
     <form>
       <input type="text" placeholder={`Tempo: ${tempo} bpm`} name="tempo" onChange={(e) => setTempo(e.target.value)} /><br/>

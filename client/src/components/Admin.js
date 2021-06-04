@@ -13,9 +13,9 @@ export default function Admin() {
   const [division, setDivision] = useState(4);
   const [numberOfRows, setNumberOfRows] = useState(1)
   const [numberOfSteps, setNumberOfSteps] = useState(4)
-  const [newSequence, setNewSequence] = useState([[1, 2, 3, 4]])
+  const [newSequence, setNewSequence] = useState([[]])
   const [connectionStatus, setConnectionStatus] = useState('Establishing Connection...')
-  const [currentSequence, setCurrentSequence] = useState([[0, 1]])
+  const [currentSequence, setCurrentSequence] = useState([[]])
   const [currentStepNumber, setCurrentStepNumber] = useState(0)
 
   useEffect(() => {
@@ -23,10 +23,10 @@ export default function Admin() {
     socket.on('success', response => {
       setConnectionStatus(response);
     })
-    socket.on('sequence', sequence => {
-      console.log('sequence received by Admin: ', sequence)
-      setCurrentSequence(sequence)
-    })
+    // socket.on('sequence', sequence => {
+    //   console.log('sequence received by Admin: ', sequence)
+    //   setCurrentSequence(sequence)
+    // })
     socket.on('step', step => {
       setcurrentStepNumber(step);
     })
@@ -41,13 +41,11 @@ export default function Admin() {
       }
       sequenceArray.push(row);
     }
-    console.log('squenceArray: ', sequenceArray)
     setNewSequence(sequenceArray)
   }
 
   const buildSequenceClickHandler = (e) => {
     e.preventDefault()
-    console.log('the click worked, newSequence is: ', newSequence)
     constructSequenceArray();
   }
 
@@ -69,6 +67,7 @@ export default function Admin() {
         key={index}/>
       })}
       </div>
+      <CreateSequenceForm />
       <form>
         {/* <input type="text" placeholder={`Tempo: ${tempo} bpm`} name="tempo" onChange={(e) => setTempo(e.target.value)} /><br/>
         <input type="text" placeholder={`Division ${division}`} name="division" onChange={(e) => setDivision(e.target.value)} /><br/> */}
