@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-export default function CreateSequenceForm({ socket }) {
+export default function CreateSequenceForm({ socket, sequenceWasRendered }) {
   const [tempo, setTempo] = useState(100);
   const [division, setDivision] = useState(4);
   const [numberOfRows, setNumberOfRows] = useState(0)
@@ -29,9 +29,9 @@ export default function CreateSequenceForm({ socket }) {
       newSequenceArray,
     }
     socket.emit('newSequence', sequenceObject)
-    console.log('sequenceObject is: ', sequenceObject, socket)
   }
 
+  if (!sequenceWasRendered) {
   return (
     <form>
       <label htmlFor="tempo">Tempo: </label>
@@ -49,4 +49,9 @@ export default function CreateSequenceForm({ socket }) {
       <button onClick={buildSequenceClickHandler}>Build Sequencer</button>
   </form>
   )
+} else {
+  return (
+    <button>Create New Sequence</button>
+  )
+}
 }

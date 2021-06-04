@@ -1,65 +1,54 @@
 import React, { useState, useEffect } from 'react';
-import stepSequencer from 'step-sequencer';
+// import stepSequencer from 'step-sequencer';
 import { io } from 'socket.io-client';
 
 import CreateSequenceForm from './CreateSequenceForm';
-import PlaybackControls from './PlaybackControls';
-import Column from './Column';
-import { sequence } from '../../../server/sequencer/stepSequencerSettings';
+import Sequence from './Sequence';
+
 
 const ENDPOINT = 'localhost:4242';
-let socket;
 
 export default function Admin() {
   const [connectionStatus, setConnectionStatus] = useState('Connection Pending...')
-  const [currentSequence, setCurrentSequence] = useState()
-  const [currentStepNumber, setCurrentStepNumber] = useState(0)
+  const [loading, setLoading] = useState(true);
+  // const [currentSequence, setCurrentSequence] = useState()
+  // const [currentStepNumber, setCurrentStepNumber] = useState(0)
   const [sequenceWasRendered, setSequenceWasRendered] = useState(false);
+  const [socket, setSocket] = useState();
 
   useEffect(() => {
-    socket = io(ENDPOINT);
+    let socket = io(ENDPOINT);
+    setSocket(socket)
     socket.on('success', response => {
       setConnectionStatus(response);
+      setLoading(false);
     })
     socket.on('sequence', sequence => {
-      console.log('sequence received by Admin: ', sequence)
-      setCurrentSequence(sequence)
-      console.log('does this fucker run the first time?')
+      // console.log('sequence received by Admin: ', sequence)
+      // setCurrentSequence(sequence)
       setSequenceWasRendered(true);
     })
-    socket.on('step', step => {
-      setcurrentStepNumber(step);
-    })
+    // socket.on('step', step => {
+    //   setcurrentStepNumber(step);
+    // })
   }, [])
 
-  // useEffect(() => {
-  //   if (currentSequence) {
-  //     setSequenceWasRendered(true)
-  //   } else {
-  //     setSequenceWasRendered(false)
-  //   }
-  //   console.log(sequenceWasRendered)
-  // }, [sequenceWasRendered])
-
-
+  if (loading) {
+    return (
+      <h1>Loading...</h1>
+    )
+  } else {
   return (
-    <>
-    <h2>Status: {connectionStatus}</h2>
-    <div className="sequencer-container">
-      {(currentSequence || [[]]).map((currentColumnValues, index) => {
-        return <Column
-        currentColumnValues={currentColumnValues}
-        currentStepNumber={currentStepNumber}
-        currentColumnNumber={index}
-        // handleStepClick={handleStepClick}
-        key={index}/>
-      })}
-      </div>
-      <CreateSequenceForm
-         socket={socket}
-         sequenceWasRendered={sequenceWasRendered}
-         setSequenceWasRendered={setSequenceWasRendered}/>
-      <PlaybackControls sequenceWasRendered={sequenceWasRendered} />
-    </>
-  )
+      <>
+        <h2>Status: {connectionStatus}</h2>
+        <CreateSequenceForm
+          socket={socket}
+          sequenceWasRendered={sequenceWasRendered}
+          setSequenceWasRendered={setSequenceWasRendered}
+          />
+          {/* {sequenceWasRendered ? <Sequence socket={socket} /> : <></>} */}
+        <Sequence socket={socket} />
+      </>
+    )
+  }
 }
