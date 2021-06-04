@@ -7,15 +7,15 @@ let currentSequence = [[]];
 
 io.on('connection', socket => {
   console.log('New WS Connection Established')
-  socket.emit('success', 'Connection successful!')
-  socket.emit('sequence', currentSequence)
+  socket.emit('success', 'Connected')
+  // socket.emit('sequence', currentSequence)
   // socket.emit('sequence', stepSequencerSettings.sequence)
   // let thisWillBeTheSequencer;
   socket.on('newSequence', (newSequence) => {
     console.log('newSequence received by server: ', newSequence)
     currentSequence = newSequence
     // thisWillBeTheSequencer =
-    socket.emit('sequence', newSequence)
+    socket.emit('sequence', newSequence.newSequenceArray)
   })
 
   //Receive step selection, emit updated sequence
