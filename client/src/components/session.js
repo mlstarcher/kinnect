@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import socketIOClient from 'socket.io-client';
+import { io } from 'socket.io-client';
 
 import Column from './Column'
 
@@ -11,14 +11,15 @@ export default function session() {
   const [currentStepNumber, setcurrentStepNumber] = useState(0)
 
   useEffect(() => {
-    // socket = socketIOClient(ENDPOINT);
-    // socket.on('success', response => {
-    //   console.log(response);
-    // })
-    // socket.on('sequence', sequence => {
-    //   console.log('sequence received: ', sequence)
-    //   setSequence(sequence)
-    // })
+    console.log('useEffect ran in Session.jsx')
+    socket = io(ENDPOINT);
+    socket.on('success', response => {
+      console.log(response);
+    })
+    socket.on('sequence', sequence => {
+      console.log('sequence received: ', sequence)
+      setSequence(sequence)
+    })
     // socket.on('step', step => {
     //   setcurrentStepNumber(step);
     // })
@@ -43,12 +44,8 @@ const handleStepClick = (stepNumber, rowNumber) => {
 
   return (
     <>
-      <span className="header">
-        <h1>Welcome to Kinnect!</h1>
-      </span>
       <div className="sequencer-container">
       {sequence.map((currentColumnValues, index) => {
-        // console.log('suppy', currentColumnValues)
         return <Column
         currentColumnValues={currentColumnValues}
         currentStepNumber={currentStepNumber}

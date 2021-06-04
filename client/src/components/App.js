@@ -9,18 +9,19 @@ import Admin from './Admin'
 export default function App() {
   return (
     <Router>
-      <header>
-      <Link to="/">
-          <h1>Home</h1>
-        </Link>
-        <Link to="/admin">
-          <h1>Admin</h1>
-        </Link>
+      <header className="header">
+        <h1>Welcome to Kinnect!</h1>
       </header>
       <Switch>
         <Route exact path="/" render={() => <Session />} />
         <Route path="/admin" render={() => <Admin />} />
       </Switch>
+      <Link to="/">
+        <h4>Home</h4>
+      </Link>
+      <Link to="/admin">
+        <h4>Admin</h4>
+      </Link>
     </Router>
   )
 }
