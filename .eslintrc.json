@@ -4,6 +4,7 @@
     "plugin:import/errors",
     "plugin:react/recommended",
     "plugin:jsx-a11y/recommended",
+    "plugin:react-hooks/recommended",
     "prettier",
     "prettier/react"
   ],
@@ -13,7 +14,7 @@
   },
   "plugins": ["react", "import", "jsx-a11y"],
   "parserOptions": {
-    "ecmaVersion": 2018,
+    "ecmaVersion": 2021,
     "sourceType": "module",
     "ecmaFeatures": {
       "jsx": true
@@ -25,6 +26,8 @@
     "node": true
   },
   "settings": {
-    "version": "detect"
+    "react": {
+      "version": "detect"
+    }
   }
 }

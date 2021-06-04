@@ -1,0 +1,17 @@
+<!doctype html>
+
+<html lang="en">
+<head><link rel="stylesheet" href="/index.HASH_REF_5fe6954ce2792979bc271c44a5a9f539.css">
+  <meta charset="utf-8">
+
+  <title>Kinnect</title>
+  <meta name="description" content="The HTML5 Herald">
+  <meta name="author" content="SitePoint">
+  <!-- <link rel="stylesheet" href="./style.css"> -->
+</head>
+<body style="text-align: center; background-color: rgb(199, 199, 199);
+">
+  <div id="app">Loading...</div>
+  <script src="/index.HASH_REF_b133115d520c389ba39d231ff6243fc2.js"></script>
+</body>
+</html>

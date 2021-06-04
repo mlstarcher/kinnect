@@ -11,17 +11,17 @@ export default function session() {
   const [currentStepNumber, setcurrentStepNumber] = useState(0)
 
   useEffect(() => {
-    socket = socketIOClient(ENDPOINT);
-    socket.on('success', response => {
-      console.log(response);
-    })
-    socket.on('sequence', sequence => {
-      console.log('sequence received: ', sequence)
-      setSequence(sequence)
-    })
-    socket.on('step', step => {
-      setcurrentStepNumber(step);
-    })
+    // socket = socketIOClient(ENDPOINT);
+    // socket.on('success', response => {
+    //   console.log(response);
+    // })
+    // socket.on('sequence', sequence => {
+    //   console.log('sequence received: ', sequence)
+    //   setSequence(sequence)
+    // })
+    // socket.on('step', step => {
+    //   setcurrentStepNumber(step);
+    // })
   }, [])
 
 const handleStepClick = (stepNumber, rowNumber) => {

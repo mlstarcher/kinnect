@@ -17,7 +17,6 @@ io.on('connection', socket => {
     console.log(stepSequencerSettings.sequence)
     socket.emit('sequence', stepSequencerSettings.sequence)
   })
-
   //Sequencer
   stepSequencer.on('0', function (step) {
     // console.log(step);
@@ -84,38 +83,3 @@ io.on('connection', socket => {
     socket.emit('step', 15)
   })
 })
-
-// The StepSequencer emits the number of
-    // the step when that step is to be played
-//     stepSequencer.on('0', function (step) {
-//       // console.log(step);
-//       socket.emit('step', step)
-//   })
-//   .on('1', function (step) {
-//       // console.log(step);
-//       socket.emit('step', step)
-//   })
-//   .on('2', function (step) {
-//       // console.log(step);
-//       socket.emit('step', step)
-//   })
-//   .on('3', function (step) {
-//       // console.log(step);
-//       socket.emit('step', step)
-//   })
-//   .on('4', function (step) {
-//     // console.log(step);
-//     socket.emit('step', step)
-//   })
-//   .on('5', function (step) {
-//       // console.log(step);
-//       socket.emit('step', step)
-//   })
-//   .on('6', function (step) {
-//       // console.log(step);
-//       socket.emit('step', step)
-//   })
-//   .on('7', function (step) {
-//     // console.log(step);
-//     socket.emit('step', step)
-// });
