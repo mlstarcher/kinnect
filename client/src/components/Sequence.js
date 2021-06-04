@@ -9,11 +9,6 @@ export default function Sequence({ socket }) {
   const [sequenceWasRendered, setSequenceWasRendered] = useState(false);
 
   useEffect(() => {
-    console.log('useEffect ran in Sequence', socket)
-    // socket = io(ENDPOINT);
-    // socket.on('success', response => {
-    //   setConnectionStatus(response);
-    // })
     socket.on('sequence', sequence => {
       console.log('sequence received by Admin: ', sequence)
       setCurrentSequence(sequence)
@@ -25,6 +20,7 @@ export default function Sequence({ socket }) {
   }, [])
 
   return (
+    <>
     <div className="sequencer-container">
       {(currentSequence || [[]]).map((currentColumnValues, index) => {
         return <Column
@@ -35,5 +31,7 @@ export default function Sequence({ socket }) {
         key={index}/>
       })}
       </div>
+      <PlaybackControls socket={socket}/>
+    </>
   )
 }

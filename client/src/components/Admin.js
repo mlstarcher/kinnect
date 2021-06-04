@@ -5,7 +5,6 @@ import { io } from 'socket.io-client';
 import CreateSequenceForm from './CreateSequenceForm';
 import Sequence from './Sequence';
 
-
 const ENDPOINT = 'localhost:4242';
 
 export default function Admin() {
@@ -35,7 +34,7 @@ export default function Admin() {
 
   if (loading) {
     return (
-      <h1>Loading...</h1>
+      <h1>Connecting to Server...</h1>
     )
   } else {
   return (
