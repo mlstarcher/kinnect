@@ -3,10 +3,10 @@ import React, { useState, useEffect } from 'react';
 import Column from './Column';
 import PlaybackControls from './PlaybackControls'
 
-export default function Sequence({ socket }) {
+export default function Sequence({ socket, sequenceWasRendered, setSequenceWasRendered }) {
   const [currentSequence, setCurrentSequence] = useState()
   const [currentStepNumber, setCurrentStepNumber] = useState(0)
-  const [sequenceWasRendered, setSequenceWasRendered] = useState(false);
+  // const [sequenceWasRendered, setSequenceWasRendered] = useState(false);
 
   useEffect(() => {
     socket.on('sequence', sequence => {
@@ -31,7 +31,7 @@ export default function Sequence({ socket }) {
         key={index}/>
       })}
       </div>
-      <PlaybackControls socket={socket}/>
+      {sequenceWasRendered ? <PlaybackControls socket={socket}/> : <></>}
     </>
   )
 }

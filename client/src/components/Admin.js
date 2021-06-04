@@ -10,8 +10,6 @@ const ENDPOINT = 'localhost:4242';
 export default function Admin() {
   const [connectionStatus, setConnectionStatus] = useState('Connection Pending...')
   const [loading, setLoading] = useState(true);
-  // const [currentSequence, setCurrentSequence] = useState()
-  // const [currentStepNumber, setCurrentStepNumber] = useState(0)
   const [sequenceWasRendered, setSequenceWasRendered] = useState(false);
   const [socket, setSocket] = useState();
 
@@ -22,14 +20,11 @@ export default function Admin() {
       setConnectionStatus(response);
       setLoading(false);
     })
-    socket.on('sequence', sequence => {
-      // console.log('sequence received by Admin: ', sequence)
-      // setCurrentSequence(sequence)
-      setSequenceWasRendered(true);
-    })
-    // socket.on('step', step => {
-    //   setcurrentStepNumber(step);
+    // socket.on('sequence', sequence => {
+    //   setSequenceWasRendered(true);
+    //   console.log('so this never runs?')
     // })
+
   }, [])
 
   if (loading) {
@@ -40,13 +35,13 @@ export default function Admin() {
   return (
       <>
         <h2>Status: {connectionStatus}</h2>
-        <CreateSequenceForm
+        {sequenceWasRendered ? <button onClick={() => setSequenceWasRendered(false)}>Create New Sequence</button> : <CreateSequenceForm socket={socket} />}
+          {/* {sequenceWasRendered ? <Sequence socket={socket} /> : <></>} */}
+        <Sequence
           socket={socket}
           sequenceWasRendered={sequenceWasRendered}
           setSequenceWasRendered={setSequenceWasRendered}
           />
-          {/* {sequenceWasRendered ? <Sequence socket={socket} /> : <></>} */}
-        <Sequence socket={socket} />
       </>
     )
   }
