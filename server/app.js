@@ -10,9 +10,11 @@ io.on('connection', socket => {
   socket.emit('success', 'Connection successful!')
   socket.emit('sequence', currentSequence)
   // socket.emit('sequence', stepSequencerSettings.sequence)
+  // let thisWillBeTheSequencer;
   socket.on('newSequence', (newSequence) => {
-    console.log('newSequence received: ', newSequence)
+    console.log('newSequence received by server: ', newSequence)
     currentSequence = newSequence
+    // thisWillBeTheSequencer =
     socket.emit('sequence', newSequence)
   })
 
