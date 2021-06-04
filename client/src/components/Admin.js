@@ -9,11 +9,6 @@ const ENDPOINT = 'localhost:4242';
 let socket;
 
 export default function Admin() {
-  const [tempo, setTempo] = useState(100);
-  const [division, setDivision] = useState(4);
-  const [numberOfRows, setNumberOfRows] = useState(1)
-  const [numberOfSteps, setNumberOfSteps] = useState(4)
-  const [newSequence, setNewSequence] = useState([[]])
   const [connectionStatus, setConnectionStatus] = useState('Establishing Connection...')
   const [currentSequence, setCurrentSequence] = useState([[]])
   const [currentStepNumber, setCurrentStepNumber] = useState(0)
@@ -32,27 +27,6 @@ export default function Admin() {
     })
   }, [])
 
-  const constructSequenceArray = () => {
-    let sequenceArray = [];
-    for (let i = 0; i < numberOfRows; i++) {
-      let row = [];
-      for (let j = 0; j < numberOfSteps; j++) {
-        row.push(j);
-      }
-      sequenceArray.push(row);
-    }
-    setNewSequence(sequenceArray)
-  }
-
-  const buildSequenceClickHandler = (e) => {
-    e.preventDefault()
-    constructSequenceArray();
-  }
-
-  useEffect(() => {
-    console.log('useEffect newSeq Ran')
-    socket.emit('newSequence', newSequence)
-  }, [newSequence])
 
   return (
     <>
@@ -67,14 +41,7 @@ export default function Admin() {
         key={index}/>
       })}
       </div>
-      <CreateSequenceForm />
-      <form>
-        {/* <input type="text" placeholder={`Tempo: ${tempo} bpm`} name="tempo" onChange={(e) => setTempo(e.target.value)} /><br/>
-        <input type="text" placeholder={`Division ${division}`} name="division" onChange={(e) => setDivision(e.target.value)} /><br/> */}
-        <input type="number" placeholder="Number of rows" name="sequence" onChange={e => setNumberOfRows(e.target.value)} /><br/>
-        <input type="number" placeholder="Number of steps" name="sequence" onChange={e => setNumberOfSteps(e.target.value)} /><br/>
-        <button onClick={buildSequenceClickHandler}>Build Sequencer</button>
-      </form>
+      <CreateSequenceForm socket={socket}/>
     </>
   )
 }
