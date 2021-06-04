@@ -17,6 +17,12 @@ io.on('connection', socket => {
     // thisWillBeTheSequencer =
     socket.emit('sequence', newSequence.newSequenceArray)
   })
+  socket.on('start', () => {
+    socket.emit('start', start)
+  })
+  socket.on('start', () => {
+    socket.emit('stop', stop)
+  })
 
   //Receive step selection, emit updated sequence
   // socket.on('activateStep', stepDetails => {
