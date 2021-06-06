@@ -15,7 +15,7 @@ export default function Sequence({ socket, sequenceWasRendered, setSequenceWasRe
       setSequenceWasRendered(true);
     })
     socket.on('step', step => {
-      setcurrentStepNumber(step);
+      setCurrentStepNumber(step);
     })
   }, [])
 

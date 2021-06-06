@@ -1,41 +1,61 @@
 // const stepSequencer = require('./sequencer').stepSequencer;
 // const stepSequencerSettings = require('./sequencer').stepSequencerSettings;
-const StepSequencer = require('step-sequencer');
+// const StepSequencer = require('step-sequencer');
+const StepSequencer = require('./sequencer/stepSequencer');
 //Start websocket
 const io = require('./socket');
 
 let currentSequence = [[]];
-
 io.on('connection', socket => {
   console.log('New WS Connection Established')
   socket.emit('success', 'Connected')
+  // let sequencer = {on: () => {}};
+  // sequencer.on('0', () => {console.log('suppy')})
+  // sequencer.on('1', () => {console.log('suppy')})
+  // sequencer.on('2', () => {console.log('suppy')})
+  // sequencer.on('3', () => {console.log('suppy')})
   // socket.emit('sequence', currentSequence)
   // socket.emit('sequence', stepSequencerSettings.sequence)
-  let sequencer;
-  let createSteps = (numberOfSteps) => {
-    for (let i = 0; i < numberOfSteps; i++) {
-      return sequencer.on(i.toString(), (step) => {console.log(step)})
-    }
-  }
-  // sequencer.on('0', (step) => {console.log(step)})
-  // sequencer.on('1', (step) => {console.log(step)})
-  // sequencer.on('2', (step) => {console.log(step)})
-  // sequencer.on('3', (step) => {console.log(step)})
+
+  // let createSteps = (numberOfSteps) => {
+  //   for (let i = 0; i < numberOfSteps; i++) {
+  //     return sequencer.on(i.toString(), (step) => {console.log(step)})
+  //   }
+  // }
+
   socket.on('newSequence', (newSequence) => {
     console.log('newSequence received by server: ', newSequence)
     currentSequence = newSequence
-    sequencer = new StepSequencer(newSequence.tempo, newSequence.division, newSequence.sequence);
-    // console.log(sequencer);
     socket.emit('sequence', newSequence.newSequenceArray)
+    // sequencer.on('0', function (step) {
+    //   console.log(step);
+    //   socket.emit('step', 0)
+    // })
+    sequencer.play()
   })
   socket.on('play', (input) => {
-    // sequencer.play()
+    sequencer.play()
     console.log('play ran')
-    // socket.emit('start', start)
-  })
+    })
+
   socket.on('stop', () => {
-      console.log('stop ran server side')
+    sequencer.stop()
+    console.log('stop ran server side')
   })
+  socket.on('tempo', (newTempo) => {
+    sequencer.setTempo(newTempo)
+    console.log(`Updated tempo to ${newTempo}bpm`)
+  })
+  let sequencer = new StepSequencer(100, 4, [[0, 1, 2, 3]]);
+
+  sequencer.on('0', (step) => {
+    console.log(step)
+  })
+  sequencer.on('1', (step) => {console.log(step)})
+  sequencer.on('2', (step) => {console.log(step)})
+  sequencer.on('3', (step) => {console.log(step)})
+})
+
 
   //Receive step selection, emit updated sequence
   // socket.on('activateStep', stepDetails => {
@@ -108,4 +128,3 @@ io.on('connection', socket => {
   //   // console.log(step);
   //   socket.emit('step', 15)
   // })
-})

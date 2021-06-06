@@ -8,7 +8,7 @@ let socket;
 
 export default function session() {
   const [sequence, setSequence] = useState([])
-  const [currentStepNumber, setcurrentStepNumber] = useState(0)
+  const [currentStepNumber, setCurrentStepNumber] = useState(0)
 
   useEffect(() => {
     console.log('useEffect ran in Session.jsx')
