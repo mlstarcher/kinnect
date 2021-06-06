@@ -1,5 +1,6 @@
-const stepSequencer = require('./sequencer').stepSequencer;
-const stepSequencerSettings = require('./sequencer').stepSequencerSettings;
+// const stepSequencer = require('./sequencer').stepSequencer;
+// const stepSequencerSettings = require('./sequencer').stepSequencerSettings;
+const StepSequencer = require('step-sequencer');
 //Start websocket
 const io = require('./socket');
 
@@ -10,18 +11,30 @@ io.on('connection', socket => {
   socket.emit('success', 'Connected')
   // socket.emit('sequence', currentSequence)
   // socket.emit('sequence', stepSequencerSettings.sequence)
-  // let thisWillBeTheSequencer;
+  let sequencer;
+  let createSteps = (numberOfSteps) => {
+    for (let i = 0; i < numberOfSteps; i++) {
+      return sequencer.on(i.toString(), (step) => {console.log(step)})
+    }
+  }
+  // sequencer.on('0', (step) => {console.log(step)})
+  // sequencer.on('1', (step) => {console.log(step)})
+  // sequencer.on('2', (step) => {console.log(step)})
+  // sequencer.on('3', (step) => {console.log(step)})
   socket.on('newSequence', (newSequence) => {
     console.log('newSequence received by server: ', newSequence)
     currentSequence = newSequence
-    // thisWillBeTheSequencer =
+    sequencer = new StepSequencer(newSequence.tempo, newSequence.division, newSequence.sequence);
+    // console.log(sequencer);
     socket.emit('sequence', newSequence.newSequenceArray)
   })
-  socket.on('start', () => {
-    socket.emit('start', start)
+  socket.on('play', (input) => {
+    // sequencer.play()
+    console.log('play ran')
+    // socket.emit('start', start)
   })
-  socket.on('start', () => {
-    socket.emit('stop', stop)
+  socket.on('stop', () => {
+      console.log('stop ran server side')
   })
 
   //Receive step selection, emit updated sequence

@@ -3,8 +3,8 @@ import React, { useState, useEffect } from 'react';
 export default function CreateSequenceForm({ socket }) {
   const [tempo, setTempo] = useState(100);
   const [division, setDivision] = useState(4);
-  const [numberOfRows, setNumberOfRows] = useState(0)
-  const [numberOfSteps, setNumberOfSteps] = useState(0)
+  const [numberOfRows, setNumberOfRows] = useState()
+  const [numberOfSteps, setNumberOfSteps] = useState()
   const [newSequenceArray, setNewSequenceArray] = useState([[]])
 
   const constructSequenceArray = (rows, steps) => {

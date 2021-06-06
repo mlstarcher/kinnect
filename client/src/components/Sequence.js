@@ -31,7 +31,8 @@ export default function Sequence({ socket, sequenceWasRendered, setSequenceWasRe
         key={index}/>
       })}
       </div>
-      {sequenceWasRendered ? <PlaybackControls socket={socket}/> : <></>}
+      <PlaybackControls socket={socket}/>
+      {/* {sequenceWasRendered ? <PlaybackControls socket={socket}/> : <></>} */}
     </>
   )
 }

@@ -1,12 +1,15 @@
 import React, { useState, useEffect } from 'react';
 
 export default function PlaybackControls({ socket }) {
+  console.log('socket is: ', socket)
   const handlePlay = () => {
-    socket.emit('play', 'play')
+    socket.emit('play', {})
+    console.log('Play click handler ran')
   }
 
   const handleStop = () => {
-    socket.emit('stop', 'stop')
+    socket.emit('stop', {})
+    console.log('Stop click handler ran')
   }
 
     return (
