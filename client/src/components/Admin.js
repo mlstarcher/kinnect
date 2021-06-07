@@ -36,7 +36,7 @@ export default function Admin() {
   return (
       <>
         <h2>Status: {connectionStatus}</h2>
-        <UpdateSequenceForm socket={socket} />
+        {/* <UpdateSequenceForm socket={socket} /> */}
         <Sequence
           socket={socket}
           currentSequence={currentSequence}
