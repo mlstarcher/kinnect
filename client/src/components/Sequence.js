@@ -3,17 +3,11 @@ import React, { useState, useEffect } from 'react';
 import Column from './Column';
 import PlaybackControls from './PlaybackControls'
 
-export default function Sequence({ socket, sequenceWasRendered, setSequenceWasRendered }) {
-  const [currentSequence, setCurrentSequence] = useState()
+export default function Sequence({ socket, currentSequence }) {
+  // const [currentSequence, setCurrentSequence] = useState()
   const [currentStepNumber, setCurrentStepNumber] = useState(0)
-  // const [sequenceWasRendered, setSequenceWasRendered] = useState(false);
 
   useEffect(() => {
-    socket.on('sequence', sequence => {
-      console.log('sequence received by Admin: ', sequence)
-      setCurrentSequence(sequence)
-      setSequenceWasRendered(true);
-    })
     socket.on('step', step => {
       setCurrentStepNumber(step);
       console.log('current step is: ', step)

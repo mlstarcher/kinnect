@@ -9,19 +9,7 @@ const staticSequenceArray = [
   [0, 0, 0, 0],
   [0, 0, 0, 0],
   [0, 0, 0, 0],
-  [0, 0, 0, 0],
-  [0, 0, 0, 0],
-  [0, 0, 0, 0],
-  [0, 0, 0, 0],
-  [0, 0, 0, 0],
-  [0, 0, 0, 0],
-  [0, 0, 0, 0],
-  [0, 0, 0, 0],
-  [0, 0, 0, 0],
-  [0, 0, 0, 0],
-  [0, 0, 0, 0],
-  [0, 0, 0, 0],
-  [0, 0, 0, 0],
+  [0, 0, 0, 0]
 ]
 
 let sequencer = new StepSequencer(100, 4, staticSequenceArray);
@@ -30,19 +18,8 @@ let currentSequence = [[]];
 io.on('connection', socket => {
   console.log('New WS Connection Established')
   socket.emit('success', 'Connected')
-  // let sequencer = {on: () => {}};
-  // sequencer.on('0', () => {console.log('suppy')})
-  // sequencer.on('1', () => {console.log('suppy')})
-  // sequencer.on('2', () => {console.log('suppy')})
-  // sequencer.on('3', () => {console.log('suppy')})
-  // socket.emit('sequence', currentSequence)
+  socket.emit('sequence', staticSequenceArray)
   // socket.emit('sequence', stepSequencerSettings.sequence)
-
-  // let createSteps = (numberOfSteps) => {
-  //   for (let i = 0; i < numberOfSteps; i++) {
-  //     return sequencer.on(i.toString(), (step) => {console.log(step)})
-  //   }
-  // }
 
   socket.on('newSequence', (newSequence) => {
     console.log('newSequence received by server: ', newSequence)

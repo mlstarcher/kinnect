@@ -11,6 +11,7 @@ const ENDPOINT = 'localhost:4242';
 export default function Admin() {
   const [connectionStatus, setConnectionStatus] = useState('Connection Pending...')
   const [loading, setLoading] = useState(true);
+  const [currentSequence, setCurrentSequence] = useState()
   const [sequenceWasRendered, setSequenceWasRendered] = useState(false);
   const [socket, setSocket] = useState();
 
@@ -21,10 +22,10 @@ export default function Admin() {
       setConnectionStatus(response);
       setLoading(false);
     })
-    // socket.on('sequence', sequence => {
-    //   setSequenceWasRendered(true);
-    //   console.log('so this never runs?')
-    // })
+    socket.on('sequence', sequence => {
+      console.log('sequence received by Admin: ', sequence)
+      setCurrentSequence(sequence)
+    })
 
   }, [])
 
@@ -39,8 +40,7 @@ export default function Admin() {
         <UpdateSequenceForm socket={socket} />
         <Sequence
           socket={socket}
-          sequenceWasRendered={sequenceWasRendered}
-          setSequenceWasRendered={setSequenceWasRendered}
+          currentSequence={currentSequence}
         />
         <PlaybackControls socket={socket} />
       </>
