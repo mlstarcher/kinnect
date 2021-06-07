@@ -1,0 +1,48 @@
+"use strict";
+var helpers = require("../../../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
+var prevRefreshReg = window.$RefreshReg$;
+var prevRefreshSig = window.$RefreshSig$;
+helpers.prelude(module);
+try {
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+  exports["default"] = PlaybackControls;
+  var _react = _interopRequireDefault(require("react"));
+  var _jsxRuntime = require("react/jsx-runtime");
+  function _interopRequireDefault(obj) {
+    return obj && obj.__esModule ? obj : {
+      "default": obj
+    };
+  }
+  function PlaybackControls(_ref) {
+    var socket = _ref.socket;
+    var handlePlay = function handlePlay() {
+      socket.emit('play', {});
+    };
+    var handleStop = function handleStop() {
+      socket.emit('stop', {});
+    };
+    var handleResume = function handleResume() {
+      socket.emit('Resume', {});
+    };
+    return (
+      /*#__PURE__*/(0, _jsxRuntime.jsxs)("div", {
+        children: [/*#__PURE__*/(0, _jsxRuntime.jsx)("button", {
+          onClick: handlePlay,
+          children: "Play"
+        }), /*#__PURE__*/(0, _jsxRuntime.jsx)("button", {
+          onClick: handleStop,
+          children: "Stop"
+        })]
+      })
+    );
+  }
+  _c = PlaybackControls;
+  var _c;
+  $RefreshReg$(_c, "PlaybackControls");
+  helpers.postlude(module);
+} finally {
+  window.$RefreshReg$ = prevRefreshReg;
+  window.$RefreshSig$ = prevRefreshSig;
+}

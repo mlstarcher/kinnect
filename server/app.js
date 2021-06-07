@@ -46,6 +46,10 @@ io.on('connection', socket => {
     sequencer.play()
     })
 
+  socket.on('resume', (input) => {
+    sequencer.resume()
+    })
+
   socket.on('stop', () => {
     sequencer.stop()
   })
