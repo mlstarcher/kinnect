@@ -6,10 +6,22 @@ const StepSequencer = require('step-sequencer');
 const io = require('./socket');
 
 const staticSequenceArray = [
-  [1, 0, 0, 0],
-  [2, 0, 0, 0],
-  [3, 0, 0, 0],
-  [4, 0, 0, 0],
+  [0, 0, 0, 0],
+  [0, 0, 0, 0],
+  [0, 0, 0, 0],
+  [0, 0, 0, 0],
+  [0, 0, 0, 0],
+  [0, 0, 0, 0],
+  [0, 0, 0, 0],
+  [0, 0, 0, 0],
+  [0, 0, 0, 0],
+  [0, 0, 0, 0],
+  [0, 0, 0, 0],
+  [0, 0, 0, 0],
+  [0, 0, 0, 0],
+  [0, 0, 0, 0],
+  [0, 0, 0, 0],
+  [0, 0, 0, 0]
 ]
 
 let sequencer = new StepSequencer(100, 4, staticSequenceArray);

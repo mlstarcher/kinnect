@@ -6,6 +6,6 @@ export default function sessionStep({
   stepNumber
 }) {
   return (
-    <button>{stepNumber}</button>
+    <button>{currentStepValue}</button>
   )
 }
