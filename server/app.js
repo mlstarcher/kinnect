@@ -21,16 +21,15 @@ io.on('connection', socket => {
   socket.emit('sequence', staticSequenceArray)
   // socket.emit('sequence', stepSequencerSettings.sequence)
 
-  socket.on('newSequence', (newSequence) => {
-    console.log('newSequence received by server: ', newSequence)
-    currentSequence = newSequence
-    socket.emit('sequence', newSequence.newSequenceArray)
-    // sequencer.on('0', function (step) {
-    //   console.log(step);
-    //   socket.emit('step', 0)
-    // })
-    sequencer.play()
-  })
+  // socket.on('newSequence', (newSequence) => {
+  //   currentSequence = newSequence
+  //   socket.emit('sequence', newSequence.newSequenceArray)
+  //   // sequencer.on('0', function (step) {
+  //   //   console.log(step);
+  //   //   socket.emit('step', 0)
+  //   // })
+  //   sequencer.play()
+  // })
   socket.on('play', (input) => {
     sequencer.play()
     console.log('play ran')
@@ -47,67 +46,67 @@ io.on('connection', socket => {
   })
 
   sequencer.on('0', (step) => {
-    socket.emit('step', step)
+    socket.emit('stepNumber', 0)
     socket.emit('sequence', staticSequenceArray)
   })
   sequencer.on('1', (step) => {
-    socket.emit('step', step)
+    socket.emit('stepNumber', 1)
     socket.emit('sequence', staticSequenceArray)
   })
   sequencer.on('2', (step) => {
-    socket.emit('step', step)
+    socket.emit('stepNumber', 2)
     socket.emit('sequence', staticSequenceArray)
   })
   sequencer.on('3', (step) => {
-    socket.emit('step', step)
+    socket.emit('stepNumber', 3)
     socket.emit('sequence', staticSequenceArray)
   })
   sequencer.on('4', (step) => {
-    socket.emit('step', step)
+    socket.emit('stepNumber', 4)
     socket.emit('sequence', staticSequenceArray)
   })
   sequencer.on('5', (step) => {
-    socket.emit('step', step)
+    socket.emit('stepNumber', 5)
     socket.emit('sequence', staticSequenceArray)
   })
   sequencer.on('6', (step) => {
-    socket.emit('step', step)
+    socket.emit('stepNumber', 6)
     socket.emit('sequence', staticSequenceArray)
   })
   sequencer.on('7', (step) => {
-    socket.emit('step', step)
+    socket.emit('stepNumber', 7)
     socket.emit('sequence', staticSequenceArray)
   })
   sequencer.on('8', (step) => {
-    socket.emit('step', step)
+    socket.emit('stepNumber', 8)
     socket.emit('sequence', staticSequenceArray)
   })
   sequencer.on('9', (step) => {
-    socket.emit('step', step)
+    socket.emit('stepNumber', 9)
     socket.emit('sequence', staticSequenceArray)
   })
   sequencer.on('10', (step) => {
-    socket.emit('step', step)
+    socket.emit('stepNumber', 10)
     socket.emit('sequence', staticSequenceArray)
   })
   sequencer.on('11', (step) => {
-    socket.emit('step', step)
+    socket.emit('stepNumber', 11)
     socket.emit('sequence', staticSequenceArray)
   })
   sequencer.on('12', (step) => {
-    socket.emit('step', step)
+    socket.emit('stepNumber', 12)
     socket.emit('sequence', staticSequenceArray)
   })
   sequencer.on('13', (step) => {
-    socket.emit('step', step)
+    socket.emit('stepNumber', 13)
     socket.emit('sequence', staticSequenceArray)
   })
   sequencer.on('14', (step) => {
-    socket.emit('step', step)
+    socket.emit('stepNumber', 14)
     socket.emit('sequence', staticSequenceArray)
   })
   sequencer.on('15', (step) => {
-    socket.emit('step', step)
+    socket.emit('stepNumber', 15)
     socket.emit('sequence', staticSequenceArray)
   })
 })

@@ -7,7 +7,7 @@ export default function Column({
   columnDataArray,
   columnNumber
 }) {
-  columnNumber = columnNumber;
+  console.log(activeColumnNumber, columnNumber)
   return (
     <div className="column-containter" style={{
       display: "flex",

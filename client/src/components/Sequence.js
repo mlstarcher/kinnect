@@ -4,12 +4,11 @@ import Column from './Column';
 import PlaybackControls from './PlaybackControls'
 
 export default function Sequence({ socket, currentSequence }) {
-  // const [currentSequence, setCurrentSequence] = useState()
-  const [activeColumnNumber, setactiveColumnNumber] = useState(0)
+  const [activeColumnNumber, setActiveColumnNumber] = useState(0)
 
   useEffect(() => {
-    socket.on('step', step => {
-      setactiveColumnNumber(step);
+    socket.on('stepNumber', step => {
+      setActiveColumnNumber(step);
     })
   }, [])
 
