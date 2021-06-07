@@ -1,59 +1,47 @@
 import React, { useState, useEffect } from 'react';
+// import stepSequencer from 'step-sequencer';
 import { io } from 'socket.io-client';
 
-import Column from './Column'
+import UpdateSequenceForm from './UpdateSequenceForm';
+import Sequence from './Sequence';
+import PlaybackControls from './PlaybackControls';
 
 const ENDPOINT = 'localhost:4242';
-let socket;
 
-export default function session() {
-  const [sequence, setSequence] = useState([])
-  const [currentStepNumber, setCurrentStepNumber] = useState(0)
+export default function Admin() {
+  const [connectionStatus, setConnectionStatus] = useState('Connection Pending...')
+  const [loading, setLoading] = useState(true);
+  const [currentSequence, setCurrentSequence] = useState()
+  const [sequenceWasRendered, setSequenceWasRendered] = useState(false);
+  const [socket, setSocket] = useState();
 
   useEffect(() => {
-    console.log('useEffect ran in Session.jsx')
-    socket = io(ENDPOINT);
+    let socket = io(ENDPOINT);
+    setSocket(socket)
     socket.on('success', response => {
-      console.log(response);
+      setConnectionStatus(response);
+      setLoading(false);
     })
     socket.on('sequence', sequence => {
-      console.log('sequence received: ', sequence)
-      setSequence(sequence)
+      setCurrentSequence(sequence)
     })
-    // socket.on('step', step => {
-    //   setcurrentStepNumber(step);
-    // })
   }, [])
 
-const handleStepClick = (stepNumber, rowNumber) => {
-    console.log('I got clicked');
-    console.log('currentStepNumber :', stepNumber, 'currentRowNumber ;', rowNumber)
-
-    let selectedStepDetails = {
-      stepNumber: stepNumber,
-      rowNumber: rowNumber
-    }
-
-    socket.emit('activateStep', selectedStepDetails)
-
-    // socket.on('sequence', sequence => {
-    //   console.log(sequence)
-    //   setSequence(sequence)
-    // }
-  }
-
+  if (loading) {
+    return (
+      <h1>Connecting to Server...</h1>
+    )
+  } else {
   return (
-    <>
-      <div className="sequencer-container">
-      {sequence.map((currentColumnValues, index) => {
-        return <Column
-        currentColumnValues={currentColumnValues}
-        currentStepNumber={currentStepNumber}
-        currentColumnNumber={index}
-        handleStepClick={handleStepClick}
-        key={index}/>
-      })}
-      </div>
-    </>
-  )
+      <>
+        <h2>Status: {connectionStatus}</h2>
+        {/* <UpdateSequenceForm socket={socket} /> */}
+        <Sequence
+          socket={socket}
+          currentSequence={currentSequence}
+        />
+        {/* <PlaybackControls socket={socket} /> */}
+      </>
+    )
+  }
 }
