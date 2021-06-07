@@ -16,11 +16,11 @@ export default function Sequence({ socket, sequenceWasRendered, setSequenceWasRe
     })
     socket.on('step', step => {
       setCurrentStepNumber(step);
+      console.log('current step is: ', step)
     })
   }, [])
 
   return (
-    <>
     <div className="sequencer-container">
       {(currentSequence || [[]]).map((currentColumnValues, index) => {
         return <Column
@@ -30,9 +30,6 @@ export default function Sequence({ socket, sequenceWasRendered, setSequenceWasRe
         // handleStepClick={handleStepClick}
         key={index}/>
       })}
-      </div>
-      <PlaybackControls socket={socket}/>
-      {/* {sequenceWasRendered ? <PlaybackControls socket={socket}/> : <></>} */}
-    </>
+    </div>
   )
 }

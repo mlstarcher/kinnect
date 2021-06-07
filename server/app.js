@@ -1,9 +1,30 @@
 // const stepSequencer = require('./sequencer').stepSequencer;
 // const stepSequencerSettings = require('./sequencer').stepSequencerSettings;
-// const StepSequencer = require('step-sequencer');
-const StepSequencer = require('./sequencer/stepSequencer');
+const StepSequencer = require('step-sequencer');
+// const StepSequencer = require('./sequencer/stepSequencer');
 //Start websocket
 const io = require('./socket');
+
+const staticSequenceArray = [
+  [0, 0, 0, 0],
+  [0, 0, 0, 0],
+  [0, 0, 0, 0],
+  [0, 0, 0, 0],
+  [0, 0, 0, 0],
+  [0, 0, 0, 0],
+  [0, 0, 0, 0],
+  [0, 0, 0, 0],
+  [0, 0, 0, 0],
+  [0, 0, 0, 0],
+  [0, 0, 0, 0],
+  [0, 0, 0, 0],
+  [0, 0, 0, 0],
+  [0, 0, 0, 0],
+  [0, 0, 0, 0],
+  [0, 0, 0, 0],
+]
+
+let sequencer = new StepSequencer(100, 4, staticSequenceArray);
 
 let currentSequence = [[]];
 io.on('connection', socket => {
@@ -46,14 +67,55 @@ io.on('connection', socket => {
     sequencer.setTempo(newTempo)
     console.log(`Updated tempo to ${newTempo}bpm`)
   })
-  let sequencer = new StepSequencer(100, 4, [[0, 1, 2, 3]]);
 
   sequencer.on('0', (step) => {
-    console.log(step)
+    socket.emit('step', step)
   })
-  sequencer.on('1', (step) => {console.log(step)})
-  sequencer.on('2', (step) => {console.log(step)})
-  sequencer.on('3', (step) => {console.log(step)})
+  sequencer.on('1', (step) => {
+    socket.emit('step', step)
+  })
+  sequencer.on('2', (step) => {
+    socket.emit('step', step)
+  })
+  sequencer.on('3', (step) => {
+    socket.emit('step', step)
+  })
+  sequencer.on('4', (step) => {
+    socket.emit('step', step)
+  })
+  sequencer.on('5', (step) => {
+    socket.emit('step', step)
+  })
+  sequencer.on('6', (step) => {
+    socket.emit('step', step)
+  })
+  sequencer.on('7', (step) => {
+    socket.emit('step', step)
+  })
+  sequencer.on('8', (step) => {
+    socket.emit('step', step)
+  })
+  sequencer.on('9', (step) => {
+    socket.emit('step', step)
+  })
+  sequencer.on('10', (step) => {
+    socket.emit('step', step)
+  })
+  sequencer.on('11', (step) => {
+    socket.emit('step', step)
+  })
+  sequencer.on('12', (step) => {
+    socket.emit('step', step)
+  })
+  sequencer.on('13', (step) => {
+    socket.emit('step', step)
+  })
+  sequencer.on('14', (step) => {
+    socket.emit('step', step)
+  })
+  sequencer.on('15', (step) => {
+    socket.emit('step', step)
+  })
 })
 
 

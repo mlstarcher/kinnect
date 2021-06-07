@@ -2,8 +2,9 @@ import React, { useState, useEffect } from 'react';
 // import stepSequencer from 'step-sequencer';
 import { io } from 'socket.io-client';
 
-import CreateSequenceForm from './CreateSequenceForm';
+import UpdateSequenceForm from './UpdateSequenceForm';
 import Sequence from './Sequence';
+import PlaybackControls from './PlaybackControls';
 
 const ENDPOINT = 'localhost:4242';
 
@@ -35,13 +36,13 @@ export default function Admin() {
   return (
       <>
         <h2>Status: {connectionStatus}</h2>
-        {sequenceWasRendered ? <button onClick={() => setSequenceWasRendered(false)}>Create New Sequence</button> : <CreateSequenceForm socket={socket} />}
-          {/* {sequenceWasRendered ? <Sequence socket={socket} /> : <></>} */}
+        <UpdateSequenceForm socket={socket} />
         <Sequence
           socket={socket}
           sequenceWasRendered={sequenceWasRendered}
           setSequenceWasRendered={setSequenceWasRendered}
-          />
+        />
+        <PlaybackControls socket={socket} />
       </>
     )
   }
