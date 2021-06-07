@@ -10,7 +10,6 @@ export default function Sequence({ socket, currentSequence }) {
   useEffect(() => {
     socket.on('step', step => {
       setactiveColumnNumber(step);
-      console.log('current step is: ', step)
     })
   }, [])
 

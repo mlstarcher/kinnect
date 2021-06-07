@@ -23,7 +23,7 @@ export default function Admin() {
       setLoading(false);
     })
     socket.on('sequence', sequence => {
-      console.log('sequence received by Admin: ', sequence)
+      // console.log('sequence received by Admin: ', sequence)
       setCurrentSequence(sequence)
     })
 

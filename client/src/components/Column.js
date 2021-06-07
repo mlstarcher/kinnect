@@ -7,8 +7,13 @@ export default function Column({
   columnDataArray,
   columnNumber
 }) {
+  columnNumber = columnNumber;
   return (
-    <div className="column-containter" style={{ display: "flex", flexDirection: "column"}}>
+    <div className="column-containter" style={{
+      display: "flex",
+      flexDirection: "column",
+      border: (activeColumnNumber === columnNumber) ? "1px solid red" : "0px"
+      }}>
         {columnDataArray.map((currentStepValue, index) => {
           return <Step
           currentStepValue={currentStepValue}
