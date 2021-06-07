@@ -1,0 +1,50 @@
+"use strict";
+var helpers = require("../../../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
+var prevRefreshReg = window.$RefreshReg$;
+var prevRefreshSig = window.$RefreshSig$;
+helpers.prelude(module);
+try {
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+  exports["default"] = Column;
+  var _react = _interopRequireDefault(require("react"));
+  var _Step = _interopRequireDefault(require("./Step"));
+  var _jsxRuntime = require("react/jsx-runtime");
+  function _interopRequireDefault(obj) {
+    return obj && obj.__esModule ? obj : {
+      "default": obj
+    };
+  }
+  function Column(_ref) {
+    var currentColumnArray = _ref.currentColumnArray, currentStepNumber = _ref.currentStepNumber, currentColumnNumber = _ref.currentColumnNumber, handleStepClick = _ref.handleStepClick;
+    console.log('column is: ', currentColumnArray);
+    var lightUp = false;
+    return (
+      /*#__PURE__*/(0, _jsxRuntime.jsx)("div", {
+        className: "column-containter",
+        children: currentColumnArray.map(function (currentStepValue, index) {
+          if (currentColumnNumber === currentStepNumber) {
+            lightUp = true;
+          }
+          return (
+            /*#__PURE__*/(0, _jsxRuntime.jsx)(_Step["default"], {
+              currentStepValue: currentStepValue,
+              currentStepNumber: currentColumnNumber,
+              currentRowNumber: index,
+              lightUp: lightUp,
+              handleStepClick: handleStepClick
+            }, index)
+          );
+        })
+      })
+    );
+  }
+  _c = Column;
+  var _c;
+  $RefreshReg$(_c, "Column");
+  helpers.postlude(module);
+} finally {
+  window.$RefreshReg$ = prevRefreshReg;
+  window.$RefreshSig$ = prevRefreshSig;
+}

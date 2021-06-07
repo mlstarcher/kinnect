@@ -5,22 +5,22 @@ import PlaybackControls from './PlaybackControls'
 
 export default function Sequence({ socket, currentSequence }) {
   // const [currentSequence, setCurrentSequence] = useState()
-  const [currentStepNumber, setCurrentStepNumber] = useState(0)
+  const [activeColumnNumber, setactiveColumnNumber] = useState(0)
 
   useEffect(() => {
     socket.on('step', step => {
-      setCurrentStepNumber(step);
+      setactiveColumnNumber(step);
       console.log('current step is: ', step)
     })
   }, [])
 
   return (
-    <div className="sequencer-container">
-      {(currentSequence || [[]]).map((currentColumnValues, index) => {
+    <div className="sequencer-container" style={{ display: "flex", flexDirection: "row", justifyContent: "center"}}>
+      {(currentSequence || [[]]).map((columnDataArray, index) => {
         return <Column
-        currentColumnValues={currentColumnValues}
-        currentStepNumber={currentStepNumber}
-        currentColumnNumber={index}
+        activeColumnNumber={activeColumnNumber}
+        columnDataArray={columnDataArray}
+        columnNumber={index}
         // handleStepClick={handleStepClick}
         key={index}/>
       })}
