@@ -6,7 +6,8 @@ export default function sessionStep({
   stepNumber,
   socket
 }) {
+  let buttonContent = currentStepValue ? 'On' : 'Off'
   return (
-    <button onClick={() => socket.emit('stepClick', { columnNumber, stepNumber })}>{currentStepValue}</button>
+    <button onClick={() => socket.emit('stepClick', { columnNumber, stepNumber })}>{buttonContent}</button>
   )
 }

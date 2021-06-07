@@ -6,22 +6,22 @@ const StepSequencer = require('step-sequencer');
 const io = require('./socket');
 
 const staticSequenceArray = [
-  [0, 0, 0, 0],
-  [0, 0, 0, 0],
-  [0, 0, 0, 0],
-  [0, 0, 0, 0],
-  [0, 0, 0, 0],
-  [0, 0, 0, 0],
-  [0, 0, 0, 0],
-  [0, 0, 0, 0],
-  [0, 0, 0, 0],
-  [0, 0, 0, 0],
-  [0, 0, 0, 0],
-  [0, 0, 0, 0],
-  [0, 0, 0, 0],
-  [0, 0, 0, 0],
-  [0, 0, 0, 0],
-  [0, 0, 0, 0]
+  [false, false, false, false],
+  [false, false, false, false],
+  [false, false, false, false],
+  [false, false, false, false],
+  [false, false, false, false],
+  [false, false, false, false],
+  [false, false, false, false],
+  [false, false, false, false],
+  [false, false, false, false],
+  [false, false, false, false],
+  [false, false, false, false],
+  [false, false, false, false],
+  [false, false, false, false],
+  [false, false, false, false],
+  [false, false, false, false],
+  [false, false, false, false]
 ]
 
 let sequencer = new StepSequencer(100, 4, staticSequenceArray);
@@ -44,12 +44,10 @@ io.on('connection', socket => {
   // })
   socket.on('play', (input) => {
     sequencer.play()
-    console.log('play ran')
     })
 
   socket.on('stop', () => {
     sequencer.stop()
-    console.log('stop ran server side')
   })
 
   socket.on('tempo', (newTempo) => {
@@ -59,6 +57,9 @@ io.on('connection', socket => {
 
   socket.on('stepClick', ({ columnNumber, stepNumber }) => {
     console.log('columnNumber: ', columnNumber, 'stepNumber: ',  stepNumber)
+    staticSequenceArray[columnNumber][stepNumber] = !staticSequenceArray[columnNumber][stepNumber];
+    socket.emit('sequence', staticSequenceArray)
+    console.log(staticSequenceArray)
   })
 
   sequencer.on('0', (step) => {
