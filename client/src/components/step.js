@@ -3,9 +3,10 @@ import React, { useState } from 'react'
 export default function sessionStep({
   currentStepValue,
   columnNumber,
-  stepNumber
+  stepNumber,
+  socket
 }) {
   return (
-    <button>{currentStepValue}</button>
+    <button onClick={() => socket.emit('stepClick', { columnNumber, stepNumber })}>{currentStepValue}</button>
   )
 }

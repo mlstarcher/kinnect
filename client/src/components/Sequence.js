@@ -19,7 +19,7 @@ export default function Sequence({ socket, currentSequence }) {
         activeColumnNumber={activeColumnNumber}
         columnDataArray={columnDataArray}
         columnNumber={index}
-        // handleStepClick={handleStepClick}
+        socket={socket}
         key={index}/>
       })}
     </div>

@@ -57,6 +57,10 @@ io.on('connection', socket => {
     console.log(`Updated tempo to ${newTempo}bpm`)
   })
 
+  socket.on('stepClick', ({ columnNumber, stepNumber }) => {
+    console.log('columnNumber: ', columnNumber, 'stepNumber: ',  stepNumber)
+  })
+
   sequencer.on('0', (step) => {
     socket.emit('stepNumber', 0)
     socket.emit('sequence', staticSequenceArray)

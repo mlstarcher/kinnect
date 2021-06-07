@@ -5,9 +5,9 @@ import Step from './Step'
 export default function Column({
   activeColumnNumber,
   columnDataArray,
-  columnNumber
+  columnNumber,
+  socket
 }) {
-  console.log(activeColumnNumber, columnNumber)
   return (
     <div className="column-containter" style={{
       display: "flex",
@@ -19,6 +19,7 @@ export default function Column({
           currentStepValue={currentStepValue}
           columnNumber={columnNumber}
           stepNumber={index}
+          socket={socket}
           key={index}
           />
         })}
