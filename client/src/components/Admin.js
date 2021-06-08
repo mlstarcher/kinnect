@@ -5,7 +5,7 @@ import Sequence from './Sequence';
 import PlaybackControls from './PlaybackControls';
 import WebRTCBroadcast from './WebRTCBroadcast';
 
-export default function Admin({ sockect }) {
+export default function Admin({ socket }) {
   const [currentSequence, setCurrentSequence] = useState()
   const [sequenceWasRendered, setSequenceWasRendered] = useState(false);
 
