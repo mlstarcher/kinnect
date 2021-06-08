@@ -5,6 +5,7 @@ import { io } from 'socket.io-client';
 
 import Session from './Session'
 import Admin from './Admin'
+import Sequence from './Sequence'
 // import './app.css'
 
 const ENDPOINT = 'localhost:4242';
@@ -13,6 +14,7 @@ export default function App() {
   const [connectionStatus, setConnectionStatus] = useState('Connection Pending...')
   const [loading, setLoading] = useState(true);
   const [socket, setSocket] = useState({});
+  const [currentSequence, setCurrentSequence] = useState()
 
   useEffect(() => {
     let socket = io(ENDPOINT);
@@ -20,6 +22,9 @@ export default function App() {
       setSocket(socket)
       setConnectionStatus(response);
       setLoading(false);
+    })
+    socket.on('sequence', sequence => {
+      setCurrentSequence(sequence)
     })
   }, [])
 
@@ -32,14 +37,16 @@ export default function App() {
     )
   } else {
     return (
+      <>
       <Router>
         <header className="header">
           <h1>Welcome to Kinnect!</h1>
           <h2>Status: {connectionStatus}</h2>
         </header>
         <Switch>
-          <Route exact path="/" render={() => <Session socket={socket} />} />
-          <Route path="/admin" render={() => <Admin socket={socket}/>} />
+          <Route exact path="/" render={() => <Session socket={socket} currentSequence={currentSequence} />} />
+          <Route path="/admin" render={() => <Admin socket={socket} currentSequence={currentSequence} />} />
+          {/* <Route path="/session" render={() => <Session socket={socket}/>} currentSequence={currentSequence}/> */}
         </Switch>
         <Link to="/">
           <h4>Home</h4>
@@ -48,6 +55,8 @@ export default function App() {
           <h4>Admin</h4>
         </Link>
       </Router>
+      {/* <Sequence currentSequence={currentSequence} socket={socket}/> */}
+      </>
     )
   }
 }

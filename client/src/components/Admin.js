@@ -5,16 +5,9 @@ import Sequence from './Sequence';
 import PlaybackControls from './PlaybackControls';
 import WebRTCBroadcast from './WebRTCBroadcast';
 
-export default function Admin({ socket }) {
-  const [currentSequence, setCurrentSequence] = useState()
-  const [sequenceWasRendered, setSequenceWasRendered] = useState(false);
+export default function Admin({ socket, currentSequence }) {
 
-  useEffect(() => {
-    socket.on('sequence', sequence => {
-      setCurrentSequence(sequence)
-    })
-  }, [])
-
+  console.log(currentSequence)
   return (
       <>
         <WebRTCBroadcast socket={socket} />
@@ -23,6 +16,10 @@ export default function Admin({ socket }) {
           currentSequence={currentSequence}
         />
         <PlaybackControls socket={socket} />
+      {/* <div>
+        <button onClick={handlePlay}>Play</button>
+        <button onClick={handleStop}>Stop</button>
+      </div> */}
       </>
     )
 }
