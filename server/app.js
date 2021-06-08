@@ -35,7 +35,7 @@ io.on('connection', socket => {
   //WebRTC
   socket.on("broadcaster", () => {
     broadcaster = socket.id;
-    console.log(broadcaster)
+    console.log('broadcaster id: ', broadcaster)
     socket.broadcast.emit("broadcaster");
   });
   socket.on("watcher", () => {

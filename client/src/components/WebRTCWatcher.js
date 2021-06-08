@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
 
-let peerConnections;
 const config = {
   iceServers: [
     {
@@ -8,6 +7,7 @@ const config = {
     }
   ]
 };
+let peerConnection;
 
 export default function WebRTCWatcher({ socket }) {
   const [stream, setStream] = useState(null)
@@ -16,6 +16,7 @@ export default function WebRTCWatcher({ socket }) {
 
   useEffect(() => {
     socket.on("offer", (id, description) => {
+
       peerConnection = new RTCPeerConnection(config);
       peerConnection
         .setRemoteDescription(description)
@@ -25,6 +26,7 @@ export default function WebRTCWatcher({ socket }) {
           socket.emit("answer", id, peerConnection.localDescription);
         });
       peerConnection.ontrack = event => {
+        let video = videoRef.current
         video.srcObject = event.streams[0];
       };
       peerConnection.onicecandidate = event => {
@@ -53,25 +55,6 @@ export default function WebRTCWatcher({ socket }) {
     // };
   }, [])
 
-  // const enableVideo = () => {
-  //   navigator.mediaDevices
-  //     .getUserMedia(constraints)
-  //     .then(currentStream => {
-  //       let video = videoRef.current;
-  //       video.srcObject = currentStream;
-  //       socket.emit("broadcaster");
-  //     })
-  //     .catch(error => console.error(error));
-  // }
-
-  function hasGetUserMedia() {
-    return !!(navigator.mediaDevices && navigator.mediaDevices.getUserMedia);
-  }
-  if (hasGetUserMedia()) {
-    // Good to go!
-  } else {
-    alert("getUserMedia() is not supported by your browser");
-  }
   return (
     <>
       <video playsInline ref={videoRef} autoPlay ></video>

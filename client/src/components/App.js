@@ -37,7 +37,6 @@ export default function App() {
   } else {
     return (
       <>
-      <h1>Is parcel fucking up?</h1>
       <Router>
         <header className="header">
           <h1>Welcome to Kinnect!</h1>

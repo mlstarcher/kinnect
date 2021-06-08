@@ -13,6 +13,8 @@ const constraints = {
   // audio: true
 }
 
+let video;
+
 export default function WebRTCBroadcast({ socket }) {
   const [stream, setStream] = useState(null)
 
@@ -24,6 +26,7 @@ export default function WebRTCBroadcast({ socket }) {
       peerConnections[id] = peerConnection;
 
       let stream = video.srcObject;
+      console.log('stream: ', stream)
       stream.getTracks().forEach(track => peerConnection.addTrack(track, stream));
 
       peerConnection.onicecandidate = event => {
@@ -57,7 +60,7 @@ export default function WebRTCBroadcast({ socket }) {
     navigator.mediaDevices
       .getUserMedia(constraints)
       .then(currentStream => {
-        let video = videoRef.current;
+        video = videoRef.current;
         video.srcObject = currentStream;
         socket.emit("broadcaster");
       })
@@ -72,9 +75,10 @@ export default function WebRTCBroadcast({ socket }) {
   } else {
     alert("getUserMedia() is not supported by your browser");
   }
+
   return (
     <>
-      <video playsInline ref={videoRef} autoPlay ></video>
+      <video playsInline ref={videoRef} autoPlay muted></video>
       <button onClick={enableVideo}>Start Video</button>
     </>
   )
