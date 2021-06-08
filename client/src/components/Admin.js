@@ -1,42 +1,22 @@
 import React, { useState, useEffect } from 'react';
-// import stepSequencer from 'step-sequencer';
-import { io } from 'socket.io-client';
 
 import UpdateSequenceForm from './UpdateSequenceForm';
 import Sequence from './Sequence';
 import PlaybackControls from './PlaybackControls';
 import WebRTCBroadcast from './WebRTCBroadcast';
 
-const ENDPOINT = 'localhost:4242';
-
-export default function Admin() {
-  const [connectionStatus, setConnectionStatus] = useState('Connection Pending...')
-  const [loading, setLoading] = useState(true);
+export default function Admin({ sockect }) {
   const [currentSequence, setCurrentSequence] = useState()
   const [sequenceWasRendered, setSequenceWasRendered] = useState(false);
-  const [socket, setSocket] = useState();
 
   useEffect(() => {
-    let socket = io(ENDPOINT);
-    setSocket(socket)
-    socket.on('success', response => {
-      setConnectionStatus(response);
-      setLoading(false);
-    })
     socket.on('sequence', sequence => {
       setCurrentSequence(sequence)
     })
-    // return socket.disconnect();
   }, [])
 
-  if (loading) {
-    return (
-      <h1>Connecting to Server...</h1>
-    )
-  } else {
   return (
       <>
-        <h2>Status: {connectionStatus}</h2>
         <WebRTCBroadcast socket={socket} />
         <Sequence
           socket={socket}
@@ -45,5 +25,4 @@ export default function Admin() {
         <PlaybackControls socket={socket} />
       </>
     )
-  }
 }

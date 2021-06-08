@@ -27,6 +27,8 @@ const staticSequenceArray = [
 let sequencer = new StepSequencer(100, 4, staticSequenceArray);
 
 let currentSequence = [[]];
+let broadcaster;
+
 io.on('connection', socket => {
   console.log('New WS Connection Established')
   socket.emit('success', 'Connected')
