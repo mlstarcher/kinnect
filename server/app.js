@@ -30,11 +30,12 @@ let currentSequence = [[]];
 io.on('connection', socket => {
   console.log('New WS Connection Established')
   socket.emit('success', 'Connected')
-  //Websockets
-  // socket.on("broadcaster", () => {
-  //   broadcaster = socket.id;
-  //   socket.broadcast.emit("broadcaster");
-  // });
+  //WebRTC
+  socket.on("broadcaster", () => {
+    broadcaster = socket.id;
+    console.log(broadcaster)
+    socket.broadcast.emit("broadcaster");
+  });
   // socket.on("watcher", () => {
   //   socket.to(broadcaster).emit("watcher", socket.id);
   // });

@@ -9,7 +9,7 @@ const config = {
   ]
 };
 const constraints = {
-  video: true,
+  video: { facingMode: "user" },
   // audio: true
 }
 
@@ -28,7 +28,7 @@ export default function WebRTC({ socket }) {
       .then(currentStream => {
         let video = videoRef.current;
         video.srcObject = currentStream;
-        // socket.emit("broadcaster");
+        socket.emit("broadcaster");
       })
       .catch(error => console.error(error));
   }
