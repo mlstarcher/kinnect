@@ -7,7 +7,6 @@ import WebRTCBroadcast from './WebRTCBroadcast';
 
 export default function Admin({ socket, currentSequence }) {
 
-  console.log(currentSequence)
   return (
       <>
         <WebRTCBroadcast socket={socket} />
@@ -16,10 +15,6 @@ export default function Admin({ socket, currentSequence }) {
           currentSequence={currentSequence}
         />
         <PlaybackControls socket={socket} />
-      {/* <div>
-        <button onClick={handlePlay}>Play</button>
-        <button onClick={handleStop}>Stop</button>
-      </div> */}
       </>
     )
 }
