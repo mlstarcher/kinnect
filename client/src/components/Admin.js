@@ -5,7 +5,7 @@ import { io } from 'socket.io-client';
 import UpdateSequenceForm from './UpdateSequenceForm';
 import Sequence from './Sequence';
 import PlaybackControls from './PlaybackControls';
-import WebRTC from './WebRTC';
+import WebRTCBroadcast from './WebRTCBroadcast';
 
 const ENDPOINT = 'localhost:4242';
 
@@ -37,7 +37,7 @@ export default function Admin() {
   return (
       <>
         <h2>Status: {connectionStatus}</h2>
-        <WebRTC socket={socket} />
+        <WebRTCBroadcast socket={socket} />
         <Sequence
           socket={socket}
           currentSequence={currentSequence}

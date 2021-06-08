@@ -36,11 +36,11 @@ io.on('connection', socket => {
     console.log(broadcaster)
     socket.broadcast.emit("broadcaster");
   });
-  // socket.on("watcher", () => {
-  //   socket.to(broadcaster).emit("watcher", socket.id);
-  // });
+  socket.on("watcher", () => {
+    socket.to(broadcaster).emit("watcher", socket.id);
+  });
   socket.on("disconnect", () => {
-    // socket.to(broadcaster).emit("disconnectPeer", socket.id);
+    socket.to(broadcaster).emit("disconnectPeer", socket.id);
   });
   socket.on("offer", (id, message) => {
     socket.to(id).emit("offer", socket.id, message);
