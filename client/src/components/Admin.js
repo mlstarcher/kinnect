@@ -26,7 +26,7 @@ export default function Admin() {
     socket.on('sequence', sequence => {
       setCurrentSequence(sequence)
     })
-    return socket.disconnect();
+    // return socket.disconnect();
   }, [])
 
   if (loading) {

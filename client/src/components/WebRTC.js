@@ -14,23 +14,20 @@ const constraints = {
 }
 
 export default function WebRTC({ socket }) {
-  const [stream, setStream] = useState(null)
+  const [streamVideo, setStreamVideo] = useState(false)
 
   const videoRef = useRef(null);
 
   useEffect(() => {
-    hasGetUserMedia()
-  })
 
-  const startVideo = () => {
+  }, [])
+
+  const enableVideo = () => {
     navigator.mediaDevices
       .getUserMedia(constraints)
       .then(currentStream => {
-        setStream(currentStream)
         let video = videoRef.current;
-        video.srcObject = stream;
-        console.log(videoRef)
-        // myVideo.current.srcObject = currentStream;
+        video.srcObject = currentStream;
         // socket.emit("broadcaster");
       })
       .catch(error => console.error(error));
@@ -45,12 +42,9 @@ export default function WebRTC({ socket }) {
     alert("getUserMedia() is not supported by your browser");
   }
   return (
-    <div>
-      <video  ref={videoRef} autoPlay></video>
-      <button onClick={startVideo}>Start Video</button>
-    </div>
+    <>
+      <video playsInline ref={videoRef} autoPlay ></video>
+      <button onClick={enableVideo}>Start Video</button>
+    </>
   )
 }
-
-// playsInline
-// autoPlay
