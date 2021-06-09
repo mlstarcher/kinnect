@@ -8,7 +8,7 @@
     "dev": "parcel client/public/index.html",
     "build": "parcel build client/public/index.html",
     "test": "test",
-    "format": "prettier \"src/**/*.{js,html}\"",
+    "format": "prettier --write \"client/**/*.{js,jsx}\"",
     "lint": "eslint \"src/**/*.{js,jsx}\" --quiet"
   },
   "repository": {

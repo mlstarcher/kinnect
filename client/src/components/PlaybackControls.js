@@ -1,18 +1,18 @@
-import React from 'react';
+import React from "react";
 
 export default function PlaybackControls({ socket }) {
   const handlePlay = () => {
-    socket.emit('play', {})
-  }
+    socket.emit("play", {});
+  };
 
   const handleStop = () => {
-    socket.emit('stop', {})
-  }
+    socket.emit("stop", {});
+  };
 
-    return (
-      <div>
-        <button onClick={handlePlay}>Play</button>
-        <button onClick={handleStop}>Stop</button>
-      </div>
-    )
+  return (
+    <div>
+      <button onClick={handlePlay}>Play</button>
+      <button onClick={handleStop}>Stop</button>
+    </div>
+  );
 }

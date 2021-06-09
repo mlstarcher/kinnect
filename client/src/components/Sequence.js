@@ -1,27 +1,37 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
 
-import Column from './Column';
-import PlaybackControls from './PlaybackControls'
+import Column from "./Column";
+import PlaybackControls from "./PlaybackControls";
 
 export default function Sequence({ socket, currentSequence }) {
-  const [activeColumnNumber, setActiveColumnNumber] = useState(0)
+  const [activeColumnNumber, setActiveColumnNumber] = useState(0);
 
   useEffect(() => {
-    socket.on('stepNumber', step => {
+    socket.on("stepNumber", (step) => {
       setActiveColumnNumber(step);
-    })
-  }, [])
+    });
+  }, []);
 
   return (
-    <div className="sequencer-container" style={{ display: "flex", flexDirection: "row", justifyContent: "center"}}>
+    <div
+      className="sequencer-container"
+      style={{
+        display: "flex",
+        flexDirection: "row",
+        justifyContent: "center",
+      }}
+    >
       {(currentSequence || [[]]).map((columnDataArray, index) => {
-        return <Column
-        activeColumnNumber={activeColumnNumber}
-        columnDataArray={columnDataArray}
-        columnNumber={index}
-        socket={socket}
-        key={index}/>
+        return (
+          <Column
+            activeColumnNumber={activeColumnNumber}
+            columnDataArray={columnDataArray}
+            columnNumber={index}
+            socket={socket}
+            key={index}
+          />
+        );
       })}
     </div>
-  )
+  );
 }
