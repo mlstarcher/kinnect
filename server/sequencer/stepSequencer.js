@@ -22,6 +22,7 @@ function loop() {
 
 function advance() {
   this.emit('' + this.step, this.sequence[this.step]);
+  this.emit('step', this.step);
   this.step = (this.step + 1);
   if (this.step === this.sequence.length) this.step = 0;
 }
