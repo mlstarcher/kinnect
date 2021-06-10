@@ -9,10 +9,8 @@
   <meta name="author" content="SitePoint">
   <!-- <link rel="stylesheet" href="./style.css"> -->
 </head>
-<body style="text-align: center;
-background-color: rgb(92, 135, 163);
-">
+<body style="5d783d48041a9f76d01542edad0de351">
   <div id="app">Loading...</div>
-  <script src="../src/index.tsx"></script>
+  <script src="a72cf03ef7dc5191cd0c352b91df97bf"></script>
 </body>
 </html>
