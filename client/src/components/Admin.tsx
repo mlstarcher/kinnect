@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 
-import UpdateSequenceForm from "./UpdateSequenceForm";
+// import UpdateSequenceForm from "./UpdateSequenceForm";
 import Sequence from "./Sequence";
 import PlaybackControls from "./PlaybackControls";
 import WebRTCBroadcast from "./WebRTCBroadcast";

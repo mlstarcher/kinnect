@@ -7,7 +7,7 @@ import Session from "./Session";
 import Admin from "./Admin";
 // import './app.css'
 
-const ENDPOINT: string = "localhost:4242";
+const ENDPOINT = "localhost:4242";
 
 export default function App() {
   const [connectionStatus, setConnectionStatus] = useState(
