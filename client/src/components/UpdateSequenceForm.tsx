@@ -16,6 +16,7 @@ export default function UpdateSequenceForm({ socket }) {
         id="tempo"
         onChange={(e) => setTempo(e.target.value)}
       ></input>
+      <br/>
       <button onClick={(e) => handleTempoClick(e)}>Update Tempo</button>
     </form>
   );

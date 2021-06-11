@@ -15,17 +15,18 @@ export default function App() {
   );
   const [loading, setLoading] = useState(true);
   const [socket, setSocket] = useState({});
-  const [currentSequence, setCurrentSequence] = useState();
+  const [currentSequenceDetails, setCurrentSequenceDetails] = useState();
 
   useEffect(() => {
     let socket = io(ENDPOINT);
     socket.on("success", (response) => {
       setSocket(socket);
       setConnectionStatus(response);
-      setLoading(false);
     });
-    socket.on("sequence", (sequence) => {
-      setCurrentSequence(sequence);
+    socket.on("sequence", (sequenceDetails) => {
+      console.log('wtf logs here', sequenceDetails)
+      setCurrentSequenceDetails(sequenceDetails);
+      setLoading(false);
     });
   }, []);
 
@@ -49,13 +50,13 @@ export default function App() {
               exact
               path="/"
               render={() => (
-                <Session socket={socket} currentSequence={currentSequence} />
+                <Session socket={socket} currentSequenceDetails={currentSequenceDetails} />
               )}
             />
             <Route
               path="/admin"
               render={() => (
-                <Admin socket={socket} currentSequence={currentSequence} />
+                <Admin socket={socket} currentSequenceDetails={currentSequenceDetails} />
               )}
             />
           </Switch>
