@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 
-export default function UpdateSequenceForm({ socket }) {
-  const [tempo, setTempo] = useState();
+export default function UpdateSequenceForm({ socket, currentSequenceDetails }) {
+  const [tempo, setTempo] = useState(currentSequenceDetails.tempo);
 
   const handleTempoClick = (e) => {
     e.preventDefault();
@@ -14,7 +14,10 @@ export default function UpdateSequenceForm({ socket }) {
       <input
         type="number"
         id="tempo"
-        onChange={(e) => setTempo(e.target.value)}
+        min="50"
+        max="160"
+        placeholder={currentSequenceDetails.tempo}
+        onChange={(e) => setTempo(Number(e.target.value))}
       ></input>
       <br/>
       <button onClick={(e) => handleTempoClick(e)}>Update Tempo</button>

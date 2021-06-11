@@ -30,7 +30,6 @@ let sequenceDetails = {
 
 let sequencer = new StepSequencer(sequenceDetails.tempo, sequenceDetails.divisions, sequenceDetails.staticSequenceArray);
 
-let currentSequence = [[]];
 let broadcaster;
 
 io.on('connection', socket => {
@@ -38,7 +37,6 @@ io.on('connection', socket => {
   socket.emit('success', 'Connected')
 
  //Step Sequencer
- console.log(sequenceDetails)
  socket.emit('sequence', sequenceDetails)
 
  socket.on('play', (input) => {
@@ -50,15 +48,14 @@ io.on('connection', socket => {
  })
 
  socket.on('tempo', (newTempo) => {
-   sequencer.setTempo(newTempo)
+   console.log('newTempo is: ', newTempo)
+   sequencer.setTempo(Number(newTempo))
    console.log(`Updated tempo to ${newTempo}bpm`)
  })
 
  socket.on('stepClick', ({ columnNumber, stepNumber }) => {
-   console.log('columnNumber: ', columnNumber, 'stepNumber: ',  stepNumber)
    staticSequenceArray[columnNumber][stepNumber] = !staticSequenceArray[columnNumber][stepNumber];
    socket.emit('sequence', staticSequenceArray)
-   console.log(staticSequenceArray)
  })
 
  sequencer.on('step', (stepNumber) => {

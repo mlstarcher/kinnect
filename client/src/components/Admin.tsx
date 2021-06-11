@@ -12,7 +12,7 @@ export default function Admin({ socket, currentSequenceDetails }) {
     <>
 
       <WebRTCBroadcast socket={socket} />
-      <UpdateSequenceFrom socket={socket}/>
+      <UpdateSequenceFrom socket={socket} currentSequenceDetails={currentSequenceDetails}/>
       <Sequence socket={socket} currentSequence={currentSequenceDetails.staticSequenceArray} />
       <PlaybackControls socket={socket} />
     </>
