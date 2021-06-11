@@ -48,14 +48,14 @@ io.on('connection', socket => {
  })
 
  socket.on('tempo', (newTempo) => {
-   console.log('newTempo is: ', newTempo)
+  sequenceDetails.tempo = newTempo;
    sequencer.setTempo(Number(newTempo))
-   console.log(`Updated tempo to ${newTempo}bpm`)
+   socket.emit('sequence', sequenceDetails)
  })
 
  socket.on('stepClick', ({ columnNumber, stepNumber }) => {
-   staticSequenceArray[columnNumber][stepNumber] = !staticSequenceArray[columnNumber][stepNumber];
-   socket.emit('sequence', staticSequenceArray)
+  sequenceDetails.staticSequenceArray[columnNumber][stepNumber] = !sequenceDetails.staticSequenceArray[columnNumber][stepNumber];
+   socket.emit('sequence', sequenceDetails)
  })
 
  sequencer.on('step', (stepNumber) => {
