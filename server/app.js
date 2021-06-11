@@ -33,6 +33,7 @@ let broadcaster;
 io.on('connection', socket => {
   console.log('New WS Connection Established')
   socket.emit('success', 'Connected')
+
   //WebRTC
   socket.on("broadcaster", () => {
     broadcaster = socket.id;
