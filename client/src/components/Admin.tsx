@@ -10,8 +10,9 @@ export default function Admin({ socket, currentSequenceDetails }) {
   console.log(currentSequenceDetails)
   return (
     <>
-      <UpdateSequenceFrom socket={socket}/>
+
       <WebRTCBroadcast socket={socket} />
+      <UpdateSequenceFrom socket={socket}/>
       <Sequence socket={socket} currentSequence={currentSequenceDetails.staticSequenceArray} />
       <PlaybackControls socket={socket} />
     </>
