@@ -11,7 +11,7 @@ export default function Messages({ messagesArray }) {
       width: "80vh"
     }}>
       {messagesArray.map((messageObject, index) => {
-        return <MessageInstance />
+        return <MessageInstance messageObject={messageObject}/>
         }
       )}
     </div>

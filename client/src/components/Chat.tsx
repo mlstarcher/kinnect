@@ -12,7 +12,8 @@ export default function Chat({ socket }) {
   }, [])
 
   const getMessages = () => {
-    fetch('/messages', {
+    console.log('getMessages ran')
+    fetch('http://localhost:4242/messages', {
       method: "GET",
       headers: {"Content-type": "application/json;charset=UTF-8"}
     })

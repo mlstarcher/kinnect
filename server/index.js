@@ -3,7 +3,7 @@ const morgan = require('morgan')
 const path = require('path')
 const cors = require('cors')
 const http = require('http')
-const messageArray = require('./app')
+// const messageArray = require('./app')
 
 const app = express()
 const port = 4242;
@@ -17,9 +17,9 @@ server.listen(port, () => {
     console.log(`Server is up and at em, listening on ${port}`)
 })
 
-app.get('/messages', (req, res) => {
-    res.status(200).send(messageArray)
-})
-
 module.exports.server = server;
 const service = require('./app.js')
+app.get('/messages', (req, res) => {
+    console.log('>>>>>', service.messagesArray)
+    res.status(200).send(service.messagesArray)
+})
