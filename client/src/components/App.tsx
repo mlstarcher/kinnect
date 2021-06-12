@@ -5,6 +5,7 @@ import { io } from "socket.io-client";
 
 import Session from "./Session";
 import Admin from "./Admin";
+import About from "./About"
 import Nav from "./Nav";
 // import './app.css'
 
@@ -42,11 +43,11 @@ export default function App() {
     return (
       <>
         <Router>
+          <Nav />
           <header className="header">
             <h1>Welcome to Kinnect!</h1>
             <h2>Status: {connectionStatus}</h2>
           </header>
-          <Nav />
           <Switch>
             <Route
               exact
@@ -59,6 +60,12 @@ export default function App() {
               path="/admin"
               render={() => (
                 <Admin socket={socket} currentSequenceDetails={currentSequenceDetails} />
+              )}
+            />
+            <Route
+              path="/about"
+              render={() => (
+                <About />
               )}
             />
           </Switch>
