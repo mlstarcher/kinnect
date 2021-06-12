@@ -9,8 +9,8 @@ const config = {
   ],
 };
 const constraints = {
-  video: true,
-  audio: true
+  video: { facingMode: "user" },
+  // audio: true
 };
 
 let video;
@@ -19,34 +19,6 @@ export default function WebRTCBroadcast({ socket }) {
   const [stream, setStream] = useState(null);
 
   const userVideo = useRef(null);
-
-  useEffect(() => {
-      navigator.mediaDevices
-        .getUserMedia(constraints)
-        .then((currentStream) => {
-          setStream(currentStream);
-          if (userVideo.current) {
-            userVideo.current.srcObject = stream;
-          }
-          socket.emit("broadcaster");
-        })
-        .catch((error) => console.error(error));
-  }, [])
-
-//To start video stream onClick uncomment this function and button below;
-//   const enableVideo = () => {
-//     navigator.mediaDevices
-//       .getUserMedia(constraints)
-//       .then((currentStream) => {
-//         setStream(currentStream);
-//         console.log('userVideo: ', userVideo);
-//         if (userVideo.current) {
-//           userVideo.current.srcObject = stream;
-//         }
-//         socket.emit("broadcaster");
-//       })
-//       .catch((error) => console.error(error));
-// }
 
   useEffect(() => {
     socket.on("watcher", (id) => {
@@ -86,6 +58,22 @@ export default function WebRTCBroadcast({ socket }) {
     };
   }, []);
 
+  const enableVideo = () => {
+    navigator.mediaDevices
+      .getUserMedia(constraints)
+      .then((currentStream) => {
+        setStream(currentStream);
+        console.log(userVideo);
+        if (userVideo.current) {
+          userVideo.current.srcObject = stream;
+        }
+        video = userVideo.current;
+        video.srcObject = currentStream;
+        socket.emit("broadcaster");
+      })
+      .catch((error) => console.error(error));
+  };
+
   function hasGetUserMedia() {
     return !!(navigator.mediaDevices && navigator.mediaDevices.getUserMedia);
   }
@@ -98,7 +86,7 @@ export default function WebRTCBroadcast({ socket }) {
   return (
     <>
       <video playsInline ref={userVideo} autoPlay muted></video>
-      {/* <button onClick={enableVideo}>Start Video</button> */}
+      <button onClick={enableVideo}>Start Video</button>
     </>
   );
 }

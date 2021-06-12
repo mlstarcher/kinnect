@@ -7,10 +7,8 @@ import UpdateSequenceFrom from "./UpdateSequenceForm";
 import WebRTCBroadcast from "./WebRTCBroadcast";
 
 export default function Admin({ socket, currentSequenceDetails }) {
-  console.log(currentSequenceDetails)
   return (
     <>
-
       <WebRTCBroadcast socket={socket} />
       <UpdateSequenceFrom socket={socket} currentSequenceDetails={currentSequenceDetails}/>
       <Sequence socket={socket} currentSequence={currentSequenceDetails.staticSequenceArray} />

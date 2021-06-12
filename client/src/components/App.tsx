@@ -26,7 +26,6 @@ export default function App() {
       setConnectionStatus(response);
     });
     socket.on("sequence", (sequenceDetails) => {
-      console.log('wtf logs here', sequenceDetails)
       setCurrentSequenceDetails(sequenceDetails);
       setLoading(false);
     });
