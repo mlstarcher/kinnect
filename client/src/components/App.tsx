@@ -5,6 +5,7 @@ import { io } from "socket.io-client";
 
 import Session from "./Session";
 import Admin from "./Admin";
+import Nav from "./Nav";
 // import './app.css'
 
 const ENDPOINT = "localhost:4242";
@@ -45,6 +46,7 @@ export default function App() {
             <h1>Welcome to Kinnect!</h1>
             <h2>Status: {connectionStatus}</h2>
           </header>
+          <Nav />
           <Switch>
             <Route
               exact
@@ -60,12 +62,6 @@ export default function App() {
               )}
             />
           </Switch>
-          <Link to="/">
-            <h4>Home</h4>
-          </Link>
-          <Link to="/admin">
-            <h4>Admin</h4>
-          </Link>
         </Router>
       </>
     );
