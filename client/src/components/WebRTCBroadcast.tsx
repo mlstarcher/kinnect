@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
+import Peer from "simple-peer"
 
 const peerConnections = {};
 const config = {
@@ -20,23 +21,28 @@ export default function WebRTCBroadcast({ socket }) {
 
   const userVideo = useRef(null);
 
-  useEffect(() => {
+  const enableVideo = () => {
       navigator.mediaDevices
         .getUserMedia(constraints)
         .then((currentStream) => {
           setStream(currentStream);
-          if (userVideo.current) {
-            userVideo.current.srcObject = stream;
-          }
-          socket.emit("broadcaster");
+          console.log('first useEffect ran')
         })
         .catch((error) => console.error(error));
-  }, [])
+  }
+
+  useEffect(() => {
+    console.log('second useEffect ran', stream)
+    if (userVideo.current) {
+      userVideo.current.srcObject = stream;
+    }
+    socket.emit("broadcaster");
+  }, [stream])
 
   return (
     <>
       <video playsInline ref={userVideo} autoPlay muted></video>
-      {/* <button onClick={enableVideo}>Start Video</button> */}
+      <button onClick={enableVideo}>Start Video</button>
     </>
   );
 }
