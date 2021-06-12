@@ -32,6 +32,8 @@ let sequencer = new StepSequencer(sequenceDetails.tempo, sequenceDetails.divisio
 
 let broadcaster;
 
+let messagesArray = [{ testMessage: 'test' }];
+
 io.on('connection', socket => {
   console.log('New WS Connection Established by ID: ', socket.id)
   socket.emit('success', 'Connected')
@@ -62,6 +64,10 @@ io.on('connection', socket => {
    // console.log(stepNumber)
    socket.emit('stepNumber', stepNumber)
  })
+   //Messaging
+   socket.on('message', (message) => {
+      messagesArray.push(message)
+   })
 
 
   //WebRTC
@@ -88,3 +94,7 @@ io.on('connection', socket => {
     socket.to(id).emit("candidate", socket.id, message);
   });
 })
+
+module.exports = {
+  messagesArray
+}
