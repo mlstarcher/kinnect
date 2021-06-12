@@ -33,68 +33,6 @@ export default function WebRTCBroadcast({ socket }) {
         .catch((error) => console.error(error));
   }, [])
 
-//To start video stream onClick uncomment this function and button below;
-//   const enableVideo = () => {
-//     navigator.mediaDevices
-//       .getUserMedia(constraints)
-//       .then((currentStream) => {
-//         setStream(currentStream);
-//         console.log('userVideo: ', userVideo);
-//         if (userVideo.current) {
-//           userVideo.current.srcObject = stream;
-//         }
-//         socket.emit("broadcaster");
-//       })
-//       .catch((error) => console.error(error));
-// }
-
-  useEffect(() => {
-    socket.on("watcher", (id) => {
-      const peerConnection = new RTCPeerConnection(config);
-      peerConnections[id] = peerConnection;
-
-      let stream = video.srcObject;
-      console.log("stream: ", stream);
-      stream
-        .getTracks()
-        .forEach((track) => peerConnection.addTrack(track, stream));
-
-      peerConnection.onicecandidate = (event) => {
-        if (event.candidate) {
-          socket.emit("candidate", id, event.candidate);
-        }
-      };
-      peerConnection
-        .createOffer()
-        .then((sdp) => peerConnection.setLocalDescription(sdp))
-        .then(() => {
-          socket.emit("offer", id, peerConnection.localDescription);
-        });
-    });
-    socket.on("answer", (id, description) => {
-      peerConnections[id].setRemoteDescription(description);
-    });
-    socket.on("candidate", (id, candidate) => {
-      peerConnections[id].addIceCandidate(new RTCIceCandidate(candidate));
-    });
-    socket.on("disconnectPeer", (id) => {
-      peerConnections[id].close();
-      delete peerConnections[id];
-    });
-    window.onunload = window.onbeforeunload = () => {
-      socket.close();
-    };
-  }, []);
-
-  function hasGetUserMedia() {
-    return !!(navigator.mediaDevices && navigator.mediaDevices.getUserMedia);
-  }
-  if (hasGetUserMedia()) {
-    // Good to go!
-  } else {
-    alert("getUserMedia() is not supported by your browser");
-  }
-
   return (
     <>
       <video playsInline ref={userVideo} autoPlay muted></video>
@@ -102,3 +40,52 @@ export default function WebRTCBroadcast({ socket }) {
     </>
   );
 }
+
+
+  // To check browser compatibility
+  // function hasGetUserMedia() {
+  //   return !!(navigator.mediaDevices && navigator.mediaDevices.getUserMedia);
+  // }
+  // if (hasGetUserMedia()) {
+  //   // Good to go!
+  // } else {
+  //   alert("getUserMedia() is not supported by your browser");
+  // }
+
+    // useEffect(() => {
+  //   socket.on("watcher", (id) => {
+  //     const peerConnection = new RTCPeerConnection(config);
+  //     peerConnections[id] = peerConnection;
+
+  //     let stream = video.srcObject;
+  //     console.log("stream: ", stream);
+  //     stream
+  //       .getTracks()
+  //       .forEach((track) => peerConnection.addTrack(track, stream));
+
+  //     peerConnection.onicecandidate = (event) => {
+  //       if (event.candidate) {
+  //         socket.emit("candidate", id, event.candidate);
+  //       }
+  //     };
+  //     peerConnection
+  //       .createOffer()
+  //       .then((sdp) => peerConnection.setLocalDescription(sdp))
+  //       .then(() => {
+  //         socket.emit("offer", id, peerConnection.localDescription);
+  //       });
+  //   });
+  //   socket.on("answer", (id, description) => {
+  //     peerConnections[id].setRemoteDescription(description);
+  //   });
+  //   socket.on("candidate", (id, candidate) => {
+  //     peerConnections[id].addIceCandidate(new RTCIceCandidate(candidate));
+  //   });
+  //   socket.on("disconnectPeer", (id) => {
+  //     peerConnections[id].close();
+  //     delete peerConnections[id];
+  //   });
+  //   window.onunload = window.onbeforeunload = () => {
+  //     socket.close();
+  //   };
+  // }, []);
