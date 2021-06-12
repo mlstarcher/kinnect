@@ -17,10 +17,12 @@ let video;
 
 export default function WebRTCBroadcast({ socket }) {
   const [stream, setStream] = useState(null);
+  const [showStream, setShowStream] = useState(false)
 
   const userVideo = useRef(null);
 
   const enableVideo = () => {
+    setShowStream(true);
       navigator.mediaDevices
         .getUserMedia(constraints)
         .then((currentStream) => {
@@ -80,7 +82,7 @@ export default function WebRTCBroadcast({ socket }) {
 
   return (
     <>
-      <video playsInline ref={userVideo} autoPlay muted></video>
+      {showStream && <video playsInline ref={userVideo} autoPlay muted></video>}
       <div style={{
         display: "flex",
         justifyContent: "space-around",

@@ -10,7 +10,6 @@ const config = {
 let peerConnection;
 
 export default function WebRTCWatcher({ socket }) {
-  // const [stream, setStream] = useState(null);
   const [viewingStream, setViewingStream] = useState(false)
 
   const videoRef = useRef(null);
@@ -63,8 +62,14 @@ export default function WebRTCWatcher({ socket }) {
 
   return (
     <>
-      <video playsInline ref={videoRef} autoPlay muted></video>
-      <button onClick={() => setViewingStream(!viewingStream)}>View Livestream</button>
+      {viewingStream && <video playsInline ref={videoRef} autoPlay muted></video>}
+      <div style={{
+        display: "flex",
+        justifyContent: "space-around",
+        margin: "0 20%"
+        }}>
+        <button onClick={() => setViewingStream(true)}>View Livestream</button>
+      </div>
     </>
   );
 }
