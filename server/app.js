@@ -65,15 +65,26 @@ io.on('connection', socket => {
 
 
   //WebRTC
-  let broadcaster
   socket.on("broadcaster", () => {
     broadcaster = socket.id;
+    console.log('broadcaster', broadcaster)
     socket.broadcast.emit("broadcaster");
   });
   socket.on("watcher", () => {
+    console.log('watcher, ', socket.id, broadcaster)
     socket.to(broadcaster).emit("watcher", socket.id);
   });
   socket.on("disconnect", () => {
     socket.to(broadcaster).emit("disconnectPeer", socket.id);
+  });
+  socket.on("offer", (id, message) => {
+    console.log('offer received', id, message)
+    socket.to(id).emit("offer", socket.id, message);
+  });
+  socket.on("answer", (id, message) => {
+    socket.to(id).emit("answer", socket.id, message);
+  });
+  socket.on("candidate", (id, message) => {
+    socket.to(id).emit("candidate", socket.id, message);
   });
 })

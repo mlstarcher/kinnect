@@ -10,12 +10,14 @@ const config = {
 let peerConnection;
 
 export default function WebRTCWatcher({ socket }) {
-  const [stream, setStream] = useState(null);
+  // const [stream, setStream] = useState(null);
+  const [viewingStream, setViewingStream] = useState(false)
 
   const videoRef = useRef(null);
 
   useEffect(() => {
     socket.on("offer", (id, description) => {
+      console.log('offer received, ', id, description)
       peerConnection = new RTCPeerConnection(config);
       peerConnection
         .setRemoteDescription(description)
@@ -34,29 +36,35 @@ export default function WebRTCWatcher({ socket }) {
         }
       };
     });
+
     socket.on("candidate", (id, candidate) => {
       peerConnection
         .addIceCandidate(new RTCIceCandidate(candidate))
         .catch((e) => console.error(e));
     });
 
-    socket.on("connect", () => {
-      socket.emit("watcher");
-    });
+    // socket.emit("watcher");
+    // socket.on("connect", () => {
+    //   console.log('did client succeed and emit a watcher?')
+    //   socket.emit("watcher");
+    // });
 
     socket.on("broadcaster", () => {
-      socket.emit("watcher");
+      console.log('broadcaster')
     });
+
+    socket.emit("watcher");
 
     // window.onunload = window.onbeforeunload = () => {
     //   socket.close();
     //   peerConnection.close();
     // };
-  }, []);
+  }, [viewingStream]);
 
   return (
     <>
-      <video playsInline ref={videoRef} autoPlay></video>
+      <video playsInline ref={videoRef} autoPlay muted></video>
+      <button onClick={() => setViewingStream(!viewingStream)}>View Livestream</button>
     </>
   );
 }
