@@ -1,17 +1,20 @@
 import React, { useState } from 'react'
+import TimeStamp from 'time-stamp';
 
 export default function CreateMessageForm({ getMessages, socket }) {
   const [messageText, setMessageText] = useState('')
 
   const submitNewMessage = () => {
+    let time = (Number(TimeStamp('HH')) - 12) + ':' + TimeStamp('mm:ss');
+
     let newMessage = {
       userId: 0,
       userName: 'Anonymous',
       messageId: 0,
-      timeStamp: 0,
-      messageContent:
+      timeStamp: time,
+      messageContent: messageText
     }
-    socket.emit('message', messageText)
+    socket.emit('message', newMessage)
     getMessages();
   }
   return (
