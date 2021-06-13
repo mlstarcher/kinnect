@@ -72,8 +72,7 @@ io.on('connection', socket => {
  })
    //Messaging
    socket.on('message', (message) => {
-     console.log('message received: ', message)
-      messagesArray.push(message)
+      messagesArray.unshift(message)
    })
 
 

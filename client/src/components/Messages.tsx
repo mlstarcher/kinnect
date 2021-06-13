@@ -8,7 +8,8 @@ export default function Messages({ messagesArray }) {
       border: "1px solid black",
       background: "white",
       height: "40vh",
-      width: "80vh"
+      width: "80vh",
+      overflow: "scroll"
     }}>
       {messagesArray.map((messageObject, index) => {
         return <MessageInstance messageObject={messageObject}/>
