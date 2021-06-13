@@ -10,7 +10,8 @@
     "test": "jest --coverage",
     "format": "prettier --write \"client/**/*.{js,jsx}\"",
     "prettier-watch": "onchange \"client/**/*.{js,jsx}\" -- prettier --write --ignore-unknown {{changed}}",
-    "lint": "eslint \"src/**/*.{js,jsx}\" --quiet"
+    "lint": "eslint \"src/**/*.{js,jsx}\" --quiet",
+    "debug": "node --inspect server/index.js"
   },
   "repository": {
     "type": "git",
