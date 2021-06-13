@@ -5,6 +5,7 @@ import Sequence from "./Sequence";
 import PlaybackControls from "./PlaybackControls";
 import UpdateSequenceFrom from "./UpdateSequenceForm";
 import WebRTCBroadcast from "./WebRTCBroadcast";
+import Chat from "./Chat"
 
 export default function Admin({ socket, currentSequenceDetails }) {
   return (
@@ -13,6 +14,7 @@ export default function Admin({ socket, currentSequenceDetails }) {
       <UpdateSequenceFrom socket={socket} currentSequenceDetails={currentSequenceDetails}/>
       <Sequence socket={socket} currentSequence={currentSequenceDetails.staticSequenceArray} />
       <PlaybackControls socket={socket} />
+      <Chat socket={socket}/>
     </>
   );
 }
