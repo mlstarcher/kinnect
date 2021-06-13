@@ -51,7 +51,7 @@ io.on('connection', socket => {
 
  socket.on('tempo', (newTempo) => {
   sequenceDetails.tempo = newTempo;
-   sequencer.setTempo(Number(newTempo))
+   sequencer.setTempo(newTempo)
    socket.emit('sequence', sequenceDetails)
  })
 

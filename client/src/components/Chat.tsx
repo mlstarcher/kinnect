@@ -34,7 +34,7 @@ export default function Chat({ socket }) {
       justifyContent: "center",
     }}>
         <Messages messagesArray={messagesArray}/>
-        <CreateMessageForm getMessages={getMessages}/>
+        <CreateMessageForm getMessages={getMessages} socket={socket}/>
       </div>
     </div>
   )
