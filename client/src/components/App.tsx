@@ -1,13 +1,12 @@
 import React, { useState, useEffect } from "react";
-import ReactDOM from "react-dom";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import { io } from "socket.io-client";
 
 import Session from "./Session";
 import Admin from "./Admin";
 import About from "./About"
-import Nav from "./Nav";
-// import './app.css'
+import Header from "./Header";
+import './app.css'
 
 const ENDPOINT = "localhost:4242";
 
@@ -20,7 +19,7 @@ export default function App() {
   const [currentSequenceDetails, setCurrentSequenceDetails] = useState();
 
   useEffect(() => {
-    let socket = io(ENDPOINT);
+    const socket = io(ENDPOINT);
     socket.on("success", (response) => {
       setSocket(socket);
       setConnectionStatus(response);
@@ -40,13 +39,9 @@ export default function App() {
     );
   } else {
     return (
-      <>
+      <div className="app-container">
         <Router>
-          <Nav />
-          <header className="header">
-            <h1>Welcome to Kinnect!</h1>
-            <h2>Status: {connectionStatus}</h2>
-          </header>
+          <Header connectionStatus={connectionStatus}/>
           <Switch>
             <Route
               exact
@@ -69,7 +64,7 @@ export default function App() {
             />
           </Switch>
         </Router>
-      </>
+      </div>
     );
   }
 }
