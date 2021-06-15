@@ -1,0 +1,22 @@
+.app-container {
+  display: flex;
+  /* justify-content: center; */
+  background-color: azure;
+  width: 100%;
+  height: 100vh;
+}
+
+.column-one {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-grow: 2;
+  padding: 0 50px;
+}
+
+.column-two {
+  display: flex;
+  flex-direction: column;
+  /* align-items: center; */
+  flex-grow: 1;
+}

@@ -1,0 +1,8 @@
+.video-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border: 1px solid black;
+  height: 20vh;
+  width: 100%;
+}

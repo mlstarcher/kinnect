@@ -26,12 +26,7 @@ export default function Chat({ socket }) {
 
   return (
     <div className="chat-container">
-      <div style={{
-      display: "flex",
-      flexDirection: "column",
-      justifyContent: "center",
-    }}>
-      <h1>Username: {userName}</h1>
+      <h4>Username: {userName}</h4>
         <Messages messagesArray={messagesArray}/>
         <form onSubmit={(e) => {
       e.preventDefault()
@@ -54,7 +49,6 @@ export default function Chat({ socket }) {
           socket={socket}
           userName={userName}
         />
-      </div>
     </div>
   )
 }

@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
+import "./WebRTC.css"
 
 const config = {
   iceServers: [
@@ -61,15 +62,9 @@ export default function WebRTCWatcher({ socket }) {
   }, [viewingStream]);
 
   return (
-    <>
+    <div className="video-container">
       {viewingStream && <video playsInline ref={videoRef} autoPlay muted></video>}
-      <div style={{
-        display: "flex",
-        justifyContent: "space-around",
-        margin: "0 20%"
-        }}>
-        <button onClick={() => setViewingStream(true)}>View Livestream</button>
-      </div>
-    </>
+      {(!viewingStream) && <button onClick={() => setViewingStream(true)}>View Livestream</button>}
+    </div>
   );
 }

@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
+import "./WebRTC.css"
 
 const peerConnections = {};
 const config = {
@@ -81,15 +82,9 @@ export default function WebRTCBroadcast({ socket }) {
   }, [stream])
 
   return (
-    <>
+    <div className="video-container">
       {showStream && <video playsInline ref={userVideo} autoPlay muted></video>}
-      <div style={{
-        display: "flex",
-        justifyContent: "space-around",
-        margin: "0 20%"
-        }}>
       <button onClick={enableVideo}>Start Streaming</button>
-      </div>
-    </>
+    </div>
   );
 }
