@@ -1,0 +1,11 @@
+header {
+  display: flex;
+  justify-content: space-between;
+  border: 1px solid black;
+}
+
+nav {
+  display: flex;
+  justify-content: center;
+  margin: "0 30%";
+}

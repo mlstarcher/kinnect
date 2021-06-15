@@ -1,10 +1,8 @@
 import React, { useState } from 'react'
 import TimeStamp from 'time-stamp';
 
-export default function CreateMessageForm({ getMessages, socket }) {
+export default function CreateMessageForm({ getMessages, socket, userName }) {
   const [messageText, setMessageText] = useState('')
-  const [userNameInput, setUserNameInput] = useState('')
-  const [userName, setUserName] = useState(null)
 
   const submitNewMessage = () => {
     let time = (Number(TimeStamp('HH')) - 12) + ':' + TimeStamp('mm:ss');
@@ -21,24 +19,6 @@ export default function CreateMessageForm({ getMessages, socket }) {
     setMessageText('');
   }
   return (
-    <>
-    <form onSubmit={(e) => {
-      e.preventDefault()
-      setUserName(userNameInput)
-      e.target.reset();
-    }}>
-      <input
-        type="text"
-        placeholder="Enter Username"
-        onChange={e => setUserNameInput(e.target.value)}
-      >
-
-      </input>
-      <button>
-        Submit
-      </button>
-    </form>
-
     <form onSubmit={(e) => {
       e.preventDefault();
       submitNewMessage();
@@ -54,13 +34,5 @@ export default function CreateMessageForm({ getMessages, socket }) {
         Submit
       </button>
     </form>
-    </>
   )
 }
-
-//Message Object:
-//userId
-//userName
-//messageId
-//timeStamp
-//messageContent

@@ -1,0 +1,59 @@
+"use strict";
+var helpers = require("../../../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
+var prevRefreshReg = window.$RefreshReg$;
+var prevRefreshSig = window.$RefreshSig$;
+helpers.prelude(module);
+try {
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+  exports["default"] = Header;
+  var _react = _interopRequireDefault(require("react"));
+  var _reactRouterDom = require("react-router-dom");
+  require("./header.css");
+  var _jsxRuntime = require("react/jsx-runtime");
+  function _interopRequireDefault(obj) {
+    return obj && obj.__esModule ? obj : {
+      "default": obj
+    };
+  }
+  function Header(_ref) {
+    var connectionStatus = _ref.connectionStatus;
+    return (
+      /*#__PURE__*/(0, _jsxRuntime.jsxs)("header", {
+        children: [/*#__PURE__*/(0, _jsxRuntime.jsxs)("div", {
+          className: "header",
+          children: [/*#__PURE__*/(0, _jsxRuntime.jsx)("h3", {
+            children: "Kinnect"
+          }), /*#__PURE__*/(0, _jsxRuntime.jsxs)("h3", {
+            children: ["Status: ", connectionStatus]
+          })]
+        }), /*#__PURE__*/(0, _jsxRuntime.jsxs)("nav", {
+          children: [/*#__PURE__*/(0, _jsxRuntime.jsx)(_reactRouterDom.Link, {
+            to: "/",
+            children: /*#__PURE__*/(0, _jsxRuntime.jsx)("h4", {
+              children: "Home|"
+            })
+          }), /*#__PURE__*/(0, _jsxRuntime.jsx)(_reactRouterDom.Link, {
+            to: "/admin",
+            children: /*#__PURE__*/(0, _jsxRuntime.jsx)("h4", {
+              children: "Admin|"
+            })
+          }), /*#__PURE__*/(0, _jsxRuntime.jsx)(_reactRouterDom.Link, {
+            to: "/about",
+            children: /*#__PURE__*/(0, _jsxRuntime.jsx)("h4", {
+              children: "About"
+            })
+          })]
+        })]
+      })
+    );
+  }
+  _c = Header;
+  var _c;
+  $RefreshReg$(_c, "Header");
+  helpers.postlude(module);
+} finally {
+  window.$RefreshReg$ = prevRefreshReg;
+  window.$RefreshSig$ = prevRefreshSig;
+}

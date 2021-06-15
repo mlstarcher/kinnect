@@ -1,0 +1,33 @@
+
+header {
+  border: 1px solid black;
+}
+
+.chat-container {
+  display: "flex";
+  justify-content: "center";
+  align-content: "center";
+}
+
+.app-container {
+  display: flex;
+  /* flex-direction: column; */
+  /* border: 1px solid black; */
+  background-color: rgb(218, 80, 80);
+}
+
+.column-one {
+  display: flex;
+  flex-direction: column;
+  background-color: azure;
+  flex-grow: 2;
+}
+
+.column-two {
+  display: flex;
+  flex-direction: column;
+  background-color: aliceblue;
+  flex-grow: 1;
+}
+
+/*# sourceMappingURL=index.HASH_REF_ba713c45dfbe7e8c5df5374b4982e37f.css.map */

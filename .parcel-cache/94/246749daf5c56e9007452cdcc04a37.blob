@@ -1,0 +1,6 @@
+header {
+  display: flex;
+  /* flex-direction: column; */
+  align-items: space-between;
+  border: 1px solid black;
+}

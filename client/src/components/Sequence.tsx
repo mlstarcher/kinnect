@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 
 import Column from "./Column";
+import "./sequence.css";
 
 export default function Sequence({ socket, currentSequence }) {
   const [activeColumnNumber, setActiveColumnNumber] = useState(0);

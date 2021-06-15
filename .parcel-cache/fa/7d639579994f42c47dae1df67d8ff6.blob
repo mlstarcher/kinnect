@@ -1,0 +1,22 @@
+.app-container {
+  display: flex;
+  /* flex-direction: column; */
+  /* border: 1px solid black; */
+  background-color: rgb(218, 80, 80);
+}
+
+.column-one {
+  display: flex;
+  flex-direction: column;
+  background-color: azure;
+  flex-grow: 2;
+}
+
+.column-two {
+  display: flex;
+  flex-direction: column;
+  background-color: aliceblue;
+  flex-grow: 1;
+}
+
+/*# sourceMappingURL=index.HASH_REF_5fe6954ce2792979bc271c44a5a9f539.css.map */
