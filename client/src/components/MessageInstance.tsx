@@ -1,16 +1,10 @@
 import React from 'react'
+import "./messageInstance.css"
 
 export default function MessageInstance({ messageObject }) {
   return (
-    <div style={{
-      display: "flex",
-      justifyContent: "flex-start",
-      borderBottom: "1px solid black",
-      width: "100%"
-    }}>
-      <p style={{
-        paddingLeft: "15px"
-      }}>{
+    <div className="message-instance">
+      <p>{
         `${messageObject.userName}: ${messageObject.messageContent} @ ${messageObject.timeStamp}`}
       </p>
     </div>

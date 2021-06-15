@@ -1,0 +1,5 @@
+.message-instance {
+  background-color: rgb(243, 243, 243);
+  padding: 0 10px;
+  border-radius: 10px;
+}

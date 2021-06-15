@@ -1,0 +1,19 @@
+.messages {
+  display: flex;
+  flex-direction: column;
+  /* align-items: center; */
+  border: 1px solid black;
+  height: 80vh;
+  overflow: scroll;
+}
+
+style={{
+  display: "flex",
+  flexDirection: "column",
+  alignItems: "center",
+  border: "1px solid black",
+  background: "white",
+  height: "40vh",
+  width: "80vh",
+  overflow: "scroll"
+}}

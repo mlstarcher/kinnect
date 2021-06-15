@@ -5,8 +5,8 @@ header {
   margin: 0 5%;
 }
 
-nav {
+/* nav {
   display: flex;
-  justify-content: space-evenly;
-  /* margin: "0 30%"; */
-}
+  justify-content: center;
+  margin: "0 30%";
+} */

@@ -1,0 +1,5 @@
+.message-instance {
+  /* display: flex;
+  justify-content: "flex-start"; */
+  background-color: darkgreen;
+}

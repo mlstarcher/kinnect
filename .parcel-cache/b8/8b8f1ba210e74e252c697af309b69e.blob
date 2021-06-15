@@ -1,0 +1,6 @@
+.message-instance {
+  /* display: flex;
+  justify-content: "flex-start"; */
+  background-color: rgb(218, 218, 218);
+  width: 100%;
+}
