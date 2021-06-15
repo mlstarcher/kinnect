@@ -32,13 +32,7 @@ let sequencer = new StepSequencer(sequenceDetails.tempo, sequenceDetails.divisio
 
 let broadcaster;
 
-let messagesArray = [{
-  userId: 0,
-  userName: 'Anonymous',
-  messageId: 0,
-  timeStamp: 0,
-  messageContent: 'testing'
-}];
+let messagesArray = [];
 
 io.on('connection', socket => {
   console.log('New WS Connection Established by ID: ', socket.id)
