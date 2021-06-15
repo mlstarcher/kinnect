@@ -6,7 +6,8 @@ import Session from "./Session";
 import Admin from "./Admin";
 import About from "./About"
 import Header from "./Header";
-import './app.css'
+import Chat from "./Chat"
+import "./app.css"
 
 const ENDPOINT = "localhost:4242";
 
@@ -40,6 +41,7 @@ export default function App() {
   } else {
     return (
       <div className="app-container">
+        <div className="column-one">
         <Router>
           <Header connectionStatus={connectionStatus}/>
           <Switch>
@@ -64,6 +66,10 @@ export default function App() {
             />
           </Switch>
         </Router>
+        </div>
+        <div className="column-two">
+          <Chat socket={socket}/>
+        </div>
       </div>
     );
   }

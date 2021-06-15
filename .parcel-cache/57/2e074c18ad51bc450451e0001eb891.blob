@@ -1,0 +1,16 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+
+  <title>Kinnect</title>
+  <meta name="description" content="The HTML5 Herald">
+  <meta name="author" content="SitePoint">
+  <link rel="stylesheet" href="49d44f88d633763fa3ac0c1ca6148389">
+</head>
+<body>
+  <div id="app">Loading...</div>
+  <script src="a72cf03ef7dc5191cd0c352b91df97bf"></script>
+</body>
+</html>
