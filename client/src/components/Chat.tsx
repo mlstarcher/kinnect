@@ -13,7 +13,6 @@ export default function Chat({ socket }) {
   }, [])
 
   const getMessages = () => {
-    console.log('getMessages ran')
     fetch('http://localhost:4242/messages', {
       method: "GET",
       headers: {"Content-type": "application/json;charset=UTF-8"}
@@ -36,21 +35,3 @@ export default function Chat({ socket }) {
     </div>
   )
 }
-
-//In state, store:
-//Array of all message objects
-//Current UserName
-//
-
-//Message Object:
-//userId
-//userName
-//messageId
-//timeStamp
-//messageContent
-
-//Component structure:
-//Chat
-//Create Message Form
-//Messages (map)
-//Message (instance)

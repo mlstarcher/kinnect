@@ -84,7 +84,7 @@ export default function WebRTCBroadcast({ socket }) {
   return (
     <div className="video-container">
       {showStream && <video playsInline ref={userVideo} autoPlay muted></video>}
-      <button onClick={enableVideo}>Start Streaming</button>
+      {!showStream && <button onClick={enableVideo}>Start Streaming</button>}
     </div>
   );
 }
