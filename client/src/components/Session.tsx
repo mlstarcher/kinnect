@@ -5,7 +5,7 @@ import SequenceInfo from './SequenceInfo'
 import Sequence from "./Sequence";
 import WebRTCWatcher from "./WebRTCWatcher";
 import Chat from "./Chat"
-import "./session.css"
+// import "./session.css"
 
 export default function Session({ socket, currentSequenceDetails }) {
   return (
