@@ -14,9 +14,9 @@ export default function Header({ connectionStatus }) {
         <Link to="/">
           <h4>Home|</h4>
         </Link>
-        <Link to="/admin">
+        {/* <Link to="/admin">
           <h4>Admin|</h4>
-        </Link>
+        </Link> */}
         <Link to="/about">
           <h4>About</h4>
         </Link>

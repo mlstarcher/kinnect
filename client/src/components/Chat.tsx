@@ -6,7 +6,6 @@ import "./chat.css"
 
 export default function Chat({ socket }) {
   const [messagesArray, setMessagesArray] = useState([])
-  const [userNameInput, setUserNameInput] = useState('')
   const [userName, setUserName] = useState('Anonymous')
 
   useEffect(() => {
@@ -27,27 +26,12 @@ export default function Chat({ socket }) {
   return (
     <div className="chat-container">
       <h4>Username: {userName}</h4>
-        <Messages messagesArray={messagesArray}/>
-        <form onSubmit={(e) => {
-      e.preventDefault()
-      setUserName(userNameInput)
-      e.target.reset();
-    }}>
-      <input
-        type="text"
-        placeholder="Enter Username"
-        onChange={e => setUserNameInput(e.target.value)}
-      >
-
-      </input>
-      <button>
-        Submit
-      </button>
-    </form>
+      <Messages messagesArray={messagesArray}/>
         <CreateMessageForm
           getMessages={getMessages}
           socket={socket}
           userName={userName}
+          setUserName={setUserName}
         />
     </div>
   )
