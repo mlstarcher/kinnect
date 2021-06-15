@@ -4,12 +4,12 @@
   justify-content: center;
   align-items: center;
   border: 1px solid black;
-  height: 60vh;
+  height: 40vh;
   width: 100%;
   background-color: black;
 }
 
 video {
-  height: 60vh;
-  width: auto;
+  height: auto;
+  width: 70%;
 }

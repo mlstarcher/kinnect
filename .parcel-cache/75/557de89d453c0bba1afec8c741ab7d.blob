@@ -10,6 +10,6 @@
 }
 
 video {
-  height: 60vh;
-  width: auto;
+  height: auto;
+  width: 700px;
 }

@@ -1,12 +1,14 @@
 body {
+  display: flex;
   background-color: rgb(201, 153, 99);
 }
 
-.app-container {
+/* .app-container {
   display: flex;
+  background-color: rgb(201, 153, 99);
   width: 100%;
   height: 100vh;
-}
+} */
 
 .column-one {
   display: flex;
