@@ -18,6 +18,7 @@ export default function App() {
   const [loading, setLoading] = useState(true);
   const [socket, setSocket] = useState({});
   const [currentSequenceDetails, setCurrentSequenceDetails] = useState();
+  const [messagesArray, setMessagesArray] = useState([])
 
   useEffect(() => {
     const socket = io(ENDPOINT);
@@ -29,6 +30,10 @@ export default function App() {
       setCurrentSequenceDetails(sequenceDetails);
       setLoading(false);
     });
+    socket.on("messages", (messages) => {
+      setMessagesArray(messages);
+      window.scrollTo(0,0);
+    })
   }, []);
 
   if (loading) {
@@ -68,7 +73,10 @@ export default function App() {
         </Router>
         </div>
         <div className="column-two">
-          <Chat socket={socket}/>
+          <Chat
+            socket={socket}
+            messagesArray={messagesArray}
+            />
         </div>
       </div>
     );

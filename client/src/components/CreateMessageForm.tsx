@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import TimeStamp from 'time-stamp';
 import "./createMessage.css"
 
-export default function CreateMessageForm({ getMessages, socket, userName, setUserName }) {
+export default function CreateMessageForm({ socket, userName, setUserName }) {
   const [messageText, setMessageText] = useState('')
   const [userNameInput, setUserNameInput] = useState('')
   const [userNameEntered, setUserNameEntered] = useState(false)
@@ -18,7 +18,6 @@ export default function CreateMessageForm({ getMessages, socket, userName, setUs
       messageContent: messageText
     }
     socket.emit('message', newMessage)
-    getMessages();
     setMessageText('');
   }
   if (userNameEntered) {

@@ -67,7 +67,7 @@ io.on('connection', socket => {
  })
    //Messaging
    socket.on('message', (message) => {
-      messagesArray.unshift(message)
+      messagesArray.push(message)
       socket.emit('messages', messagesArray)
    })
 
