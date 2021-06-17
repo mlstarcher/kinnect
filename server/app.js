@@ -40,8 +40,9 @@ io.on('connection', socket => {
 
  //Step Sequencer
  socket.emit('sequence',  sequenceDetails)
+ socket.emit('messages', messagesArray)
 
- socket.on('play', (input) => {
+ socket.on('play', () => {
    sequencer.play()
    })
 

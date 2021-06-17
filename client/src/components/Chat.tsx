@@ -10,6 +10,9 @@ export default function Chat({ socket }) {
 
   useEffect(() => {
     getMessages()
+    socket.on('messages', (messages) => {
+      setMessagesArray(messages)
+    })
   }, [])
 
   const getMessages = () => {
