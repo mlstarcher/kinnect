@@ -2,7 +2,7 @@
   "name": "kinnect",
   "version": "1.0.0",
   "description": "Remotely control robotic instruments with MIDI over web",
-  "main": "index.js",
+  "main": "index.html",
   "scripts": {
     "start": "nodemon server",
     "dev": "parcel client/public/index.html",

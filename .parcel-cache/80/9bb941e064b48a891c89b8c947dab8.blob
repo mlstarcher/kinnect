@@ -1,0 +1,15 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+
+  <title>Kinnect</title>
+  <meta name="A tool to remotely view and control motorized instruments" content="The HTML5 Herald">
+  <meta name="Matthew Starcher" content="SitePoint">
+</head>
+<body>
+  <div id="app">Loading...</div>
+  <script src="c02ad352fa9ab9eb683706ebc9ec91cc"></script>
+</body>
+</html>

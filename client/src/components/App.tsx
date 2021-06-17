@@ -9,7 +9,7 @@ import Header from "./Header";
 import Chat from "./Chat"
 import "./app.css"
 
-const ENDPOINT = "localhost:4242";
+const ENDPOINT = "http://ee24abaab43f.ngrok.io";
 
 export default function App() {
   const [connectionStatus, setConnectionStatus] = useState(
