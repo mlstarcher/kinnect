@@ -19,7 +19,3 @@ server.listen(port, () => {
 
 module.exports.server = server;
 const service = require('./app.js')
-
-app.get('/messages', (req, res) => {
-    res.status(200).send(service.messagesArray)
-})
