@@ -9,7 +9,7 @@ import Header from "./Header";
 import Chat from "./Chat"
 import "./app.css"
 
-const ENDPOINT = "http://ee24abaab43f.ngrok.io";
+const ENDPOINT = "http://94d468dcb6c1.ngrok.io";
 
 export default function App() {
   const [connectionStatus, setConnectionStatus] = useState(
@@ -31,9 +31,12 @@ export default function App() {
       setLoading(false);
     });
     socket.on("messages", (messages) => {
+      console.log(messages)
       setMessagesArray(messages);
-      window.scrollTo(0,0);
     })
+    return () => {
+      socket.removeAllListeners()
+    }
   }, []);
 
   if (loading) {
@@ -76,6 +79,7 @@ export default function App() {
           <Chat
             socket={socket}
             messagesArray={messagesArray}
+            setMessagesArray={setMessagesArray}
             />
         </div>
       </div>

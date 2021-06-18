@@ -62,14 +62,17 @@ io.on('connection', socket => {
  })
 
  sequencer.on('step', (stepNumber) => {
-   // console.log(stepNumber)
    socket.emit('stepNumber', stepNumber)
  })
-   //Messaging
-   socket.on('message', (message) => {
-      messagesArray.push(message)
-      socket.emit('messages', messagesArray)
-   })
+
+  //Messaging
+  socket.on('message', (message) => {
+    messagesArray.push(message)
+    socket.emit('messages', messagesArray)
+    console.log('message received', message)
+
+    // socket.emit('newMessage', message)
+  })
 
 
   //WebRTC

@@ -1,0 +1,12 @@
+header {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin: 0 5%;
+}
+
+nav {
+  display: flex;
+  justify-content: space-evenly;
+  /* margin: "0 30%"; */
+}

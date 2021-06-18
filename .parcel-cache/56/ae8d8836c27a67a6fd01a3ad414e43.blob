@@ -1,0 +1,15 @@
+.video-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid black;
+  height: 60vh;
+  width: 100%;
+  background-color: black;
+}
+
+video {
+  height: 60vh;
+  width: auto;
+}

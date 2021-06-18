@@ -6,10 +6,10 @@
   "scripts": {
     "start": "nodemon server",
     "dev": "parcel client/public/index.html",
-    "build": "parcel build client/public/index.html",
+    "build": "parcel build client/public/index.html --dist-dir production",
     "test": "jest --coverage",
     "format": "prettier --write \"client/**/*.{js,jsx}\"",
-    "prettier-watch": "onchange \"client/**/*.{js,jsx}\" -- prettier --write --ignore-unknown {{changed}}",
+    "prettier-watch": "onchange \"client/**/*.{js,jsx}\" --prettier --write --ignore-unknown {{changed}}",
     "lint": "eslint \"src/**/*.{js,jsx,tsx}\" --quiet"
   },
   "repository": {

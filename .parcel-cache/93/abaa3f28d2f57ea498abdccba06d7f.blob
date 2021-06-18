@@ -1,0 +1,7 @@
+.message-instance {
+  background-color: rgb(150, 225, 235);
+  padding: 0 10px;
+  margin-top: 5px;
+  border-radius: 10px;
+  box-shadow: inset rgb(0 0 0 / 20%) -1px -6px 20px 1px;
+}
