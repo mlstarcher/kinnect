@@ -1,10 +1,6 @@
 body {
   background-color: rgb(201, 153, 99);
-  font-family: "Montserrat Alternates", sans-serif;
-}
-
-h1 {
-  font-size: 3em;
+  font-family: "Cabin Sketch", cursive;
 }
 
 .app-container {
@@ -26,11 +22,4 @@ h1 {
   flex-direction: column;
   padding: 0 50px 0 25px;
   flex-grow: 1;
-}
-
-.connecting {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
 }

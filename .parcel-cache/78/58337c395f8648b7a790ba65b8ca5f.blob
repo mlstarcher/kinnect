@@ -4,7 +4,7 @@ body {
 }
 
 h1 {
-  font-size: 3em;
+  font-size: large;
 }
 
 .app-container {
@@ -26,11 +26,4 @@ h1 {
   flex-direction: column;
   padding: 0 50px 0 25px;
   flex-grow: 1;
-}
-
-.connecting {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
 }

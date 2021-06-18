@@ -31,20 +31,19 @@ export default function App() {
       setLoading(false);
     });
     socket.on("messages", (messages) => {
-      console.log(messages)
       setMessagesArray(messages);
+      console.log('client side socket received newMessage: ', messages)
     })
-    return () => {
-      socket.removeAllListeners()
-    }
+    // return () => {
+    //   socket.removeAllListeners()
+    // }
   }, []);
 
   if (loading) {
     return (
-      <>
+      <div className="connecting">
         <h1>Connecting to Server...</h1>
-        <h2>Status: {connectionStatus}</h2>
-      </>
+      </div>
     );
   } else {
     return (
