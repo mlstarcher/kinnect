@@ -8,16 +8,16 @@ export default function CreateMessageForm({ socket, userName, setUserName }) {
   const [userNameEntered, setUserNameEntered] = useState(false)
 
   const submitNewMessage = () => {
-    let time = (Number(TimeStamp('HH')) - 12) + ':' + TimeStamp('mm:ss');
+    const time = (Number(TimeStamp('HH')) - 12) + ':' + TimeStamp('mm:ss');
 
-    let newMessage = {
+    const newMessage = {
       userId: 0,
       userName: userName,
       messageId: 0,
       timeStamp: time,
       messageContent: messageText
     }
-    socket.emit('message', newMessage)
+    socket.emit('newMessage', newMessage)
     setMessageText('');
   }
   if (userNameEntered) {

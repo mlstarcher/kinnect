@@ -4,17 +4,8 @@ import Messages from "./Messages"
 import CreateMessageForm from "./CreateMessageForm"
 import "./chat.css"
 
-export default function Chat({ socket, messagesArray, setMessagesArray }) {
+export default function Chat({ socket, messagesArray }) {
   const [userName, setUserName] = useState('Anonymous')
-
-  useEffect(() => {
-    console.log('chat re rendered')
-    socket.on("newMessage", (newMessage) => {
-      // console.log('newMessage', newMessage)
-      // setMessagesArray(oldMessagesArray => [...oldMessagesArray, newMessage])
-      console.log('messagesArray', messagesArray)
-    })
-  }, [messagesArray])
 
   return (
     <div className="chat-container">

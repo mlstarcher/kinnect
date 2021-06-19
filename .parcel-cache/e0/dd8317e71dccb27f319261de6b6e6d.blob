@@ -1,0 +1,40 @@
+body {
+  background-color: rgb(201, 153, 99);
+  font-family: "Montserrat", sans-serif;
+}
+
+h1 {
+  font-size: 3em;
+}
+
+.app-container {
+  display: flex;
+  width: 100%;
+  height: 100vh;
+}
+
+.column-one {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-grow: 2;
+  padding: 0 25px 0 50px;
+}
+
+.column-two {
+  display: flex;
+  flex-direction: column;
+  padding: 0 50px 0 25px;
+  flex-grow: 1;
+}
+
+.connecting {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+div:nth-child(odd) {
+  content: "Hey";
+}

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import { io } from "socket.io-client";
 
@@ -9,34 +9,42 @@ import Header from "./Header";
 import Chat from "./Chat"
 import "./app.css"
 
-const ENDPOINT = "http://94d468dcb6c1.ngrok.io";
+const ENDPOINT = "localhost:4242";
+// let socket;
 
 export default function App() {
   const [connectionStatus, setConnectionStatus] = useState(
     "Connection Pending..."
   );
   const [loading, setLoading] = useState(true);
-  const [socket, setSocket] = useState({});
   const [currentSequenceDetails, setCurrentSequenceDetails] = useState();
   const [messagesArray, setMessagesArray] = useState([])
+
+  const socketClientRef = useRef()
 
   useEffect(() => {
     const socket = io(ENDPOINT);
     socket.on("success", (response) => {
-      setSocket(socket);
       setConnectionStatus(response);
     });
     socket.on("sequence", (sequenceDetails) => {
+      console.log('new Sequence Received', sequenceDetails)
       setCurrentSequenceDetails(sequenceDetails);
       setLoading(false);
     });
-    socket.on("messages", (messages) => {
-      setMessagesArray(messages);
-      console.log('client side socket received newMessage: ', messages)
+    // socket.on("messages", (messages) => {
+    //   console.log('First Load Messages Array: ', messages)
+    //   setMessagesArray(messages);
+    // })
+    socket.on("newMessage", (message) => {
+      console.log('New Message listener array: ', message)
+      // setMessagesArray(message);
+      setMessagesArray(oldMessages => [...oldMessages, message]);
     })
-    // return () => {
-    //   socket.removeAllListeners()
-    // }
+    socketClientRef.current = socket;
+    return () => {
+      socket.removeAllListeners()
+    }
   }, []);
 
   if (loading) {
@@ -56,13 +64,13 @@ export default function App() {
               exact
               path="/"
               render={() => (
-                <Session socket={socket} currentSequenceDetails={currentSequenceDetails} />
+                <Session socket={socketClientRef.current} currentSequenceDetails={currentSequenceDetails} />
               )}
             />
             <Route
               path="/admin"
               render={() => (
-                <Admin socket={socket} currentSequenceDetails={currentSequenceDetails} />
+                <Admin socket={socketClientRef.current} currentSequenceDetails={currentSequenceDetails} />
               )}
             />
             <Route
@@ -76,9 +84,8 @@ export default function App() {
         </div>
         <div className="column-two">
           <Chat
-            socket={socket}
+            socket={socketClientRef.current}
             messagesArray={messagesArray}
-            setMessagesArray={setMessagesArray}
             />
         </div>
       </div>

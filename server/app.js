@@ -38,9 +38,21 @@ io.on('connection', socket => {
   console.log('New WS Connection Established by ID: ', socket.id)
   socket.emit('success', 'Connected')
 
+  //Messaging
+  socket.emit('messages', messagesArray)
+
+  socket.on('newMessage', (message) => {
+    console.log('message received', message)
+    messagesArray.push(message)
+    socket.emit('newMessage', message)
+    // socket.emit('newMessage', message)
+
+    // socket.emit('newMessage', message)
+  })
+
+
  //Step Sequencer
  socket.emit('sequence',  sequenceDetails)
- socket.emit('messages', messagesArray)
 
  socket.on('play', () => {
    sequencer.play()
@@ -64,16 +76,6 @@ io.on('connection', socket => {
  sequencer.on('step', (stepNumber) => {
    socket.emit('stepNumber', stepNumber)
  })
-
-  //Messaging
-  socket.on('message', (message) => {
-    messagesArray.push(message)
-    socket.emit('messages', messagesArray)
-    console.log('message received', message)
-
-    // socket.emit('newMessage', message)
-  })
-
 
   //WebRTC
   socket.on("broadcaster", () => {

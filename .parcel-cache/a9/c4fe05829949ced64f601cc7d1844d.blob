@@ -1,0 +1,16 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+
+  <title>Kinnect</title>
+  <meta name="Matthew Starcher" content="SitePoint">
+  <link rel="preconnect" href="26208b63c17284d54ac08eeb12585ebb">
+  <link href="bdb92e79f2c15790a84062259b9f43d0" rel="stylesheet">
+</head>
+<body>
+  <div id="app">Loading...</div>
+  <script src="99a25e66dd67620073272797c3321b99"></script>
+</body>
+</html>
